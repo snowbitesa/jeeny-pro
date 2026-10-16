@@ -1,0 +1,21 @@
+{
+  "name": "جيني برو | النظام المالي والمستشار الذكي",
+  "short_name": "جيني برو",
+  "description": "نظام مالي شخصي لكابتن جيني: تسجيل المشاوير من الصور، حساب الربح الصافي، عداد السيارة والبنزين، ومستشار ذكي.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0b0f19",
+  "theme_color": "#581c87",
+  "dir": "rtl",
+  "lang": "ar",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

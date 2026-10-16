@@ -1,0 +1,1276 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>جيني برو | النظام المالي المتكامل - كورولا 2015</title>
+<meta name="theme-color" content="#581c87">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="جيني برو">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icon.svg">
+<script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
+<style>
+:root{--p:#581c87;--pl:#9333ea;--ac:#c084fc;--bg:#0b0f19;--card:#151c2c;--txt:#f8fafc;--mut:#94a3b8;--ok:#10b981;--err:#ef4444;--warn:#f59e0b;--brd:rgba(255,255,255,0.08)}
+*{box-sizing:border-box;margin:0;padding:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Tajawal",sans-serif;-webkit-tap-highlight-color:transparent}
+body{background:var(--bg);color:var(--txt);padding-bottom:92px}
+header{background:linear-gradient(135deg,#3b0764,#7e22ce);padding:16px 14px;text-align:center;box-shadow:0 4px 20px rgba(0,0,0,.4);position:sticky;top:0;z-index:50}
+header h1{font-size:1.12rem;font-weight:800;margin-bottom:3px}
+header p{font-size:.76rem;color:#e9d5ff}
+.container{padding:12px;max-width:650px;margin:auto}
+.card{background:var(--card);border-radius:15px;padding:15px;margin-bottom:13px;border:1px solid var(--brd)}
+.card h2{font-size:.95rem;margin-bottom:10px;color:#f1f5f9;display:flex;justify-content:space-between;align-items:center}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:7px}
+.sbox{background:rgba(255,255,255,.03);padding:10px 6px;border-radius:11px;text-align:center;border:1px solid rgba(255,255,255,.05)}
+.sbox .v{font-size:1.12rem;font-weight:800;color:var(--ok);margin-top:3px}
+.sbox .l{font-size:.71rem;color:var(--mut)}
+label{display:block;font-size:.77rem;color:var(--mut);margin:8px 0 4px}
+input,select{width:100%;padding:10px;border-radius:9px;border:1px solid #334155;background:#0b0f19;color:#fff;font-size:.9rem}
+button.btn{width:100%;padding:11px;border:none;border-radius:11px;background:var(--pl);color:#fff;font-size:.9rem;font-weight:700;margin-top:10px;cursor:pointer}
+button.ok{background:var(--ok)}
+button.err{background:rgba(239,68,68,.15);color:#fca5a5;border:1px solid rgba(239,68,68,.4)}
+button.sec{background:#1e293b;color:#e2e8f0;border:1px solid #334155}
+.upzone{border:2px dashed #a855f7;background:rgba(147,51,234,.08);border-radius:13px;padding:16px 10px;text-align:center;cursor:pointer;margin-top:8px}
+.upzone p{font-size:.88rem;color:#f3e8ff;margin-top:4px;font-weight:600}
+.upzone span{font-size:.73rem;color:var(--mut);display:block;margin-top:3px}
+.status{margin-top:10px;padding:10px;border-radius:9px;background:rgba(245,158,11,.12);border:1px solid var(--warn);font-size:.82rem;color:#fcd34d;display:none;text-align:center}
+.dcard{background:#0f1624;border:1px solid #263147;border-radius:13px;margin-bottom:8px;overflow:hidden}
+.dhdr{padding:12px 11px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;background:rgba(255,255,255,.02)}
+.dtitle{font-weight:700;font-size:.86rem;display:flex;align-items:center;gap:6px}
+.dsum{display:flex;align-items:center;gap:8px;font-size:.79rem}
+.drides{display:none;padding:9px 11px;border-top:1px solid #1e293b;background:#090d16}
+.dcard.open .drides{display:block}
+.rrow{display:flex;justify-content:space-between;align-items:center;padding:8px 9px;border-radius:9px;background:#131b2e;margin-bottom:6px;border:1px solid rgba(255,255,255,.05)}
+.rinfo{flex:1}
+.rtop{font-size:.83rem;font-weight:700;display:flex;align-items:center;gap:8px}
+.rsub{font-size:.72rem;color:var(--mut);margin-top:3px}
+.ract{display:flex;gap:5px}
+.ibtn{border:none;background:rgba(255,255,255,.06);color:#fff;width:29px;height:29px;border-radius:7px;cursor:pointer;font-size:.8rem}
+.ibtn.del{background:rgba(239,68,68,.15);color:#f87171}
+.ibtn.edt{background:rgba(59,130,246,.15);color:#60a5fa}
+.badge{padding:2px 7px;border-radius:6px;font-size:.71rem;background:rgba(147,51,234,.25);color:#e9d5ff}
+.verdict{margin-top:11px;padding:12px;border-radius:11px;display:none;line-height:1.65;font-size:.85rem}
+.verdict.good{background:rgba(16,185,129,.14);border:1px solid var(--ok);display:block}
+.verdict.bad{background:rgba(239,68,68,.14);border:1px solid var(--err);display:block}
+.verdict.warn{background:rgba(245,158,11,.14);border:1px solid var(--warn);display:block}
+.pbar{width:100%;background:#090d16;height:12px;border-radius:6px;overflow:hidden;margin-top:7px;border:1px solid #1e293b}
+.pfill{height:100%;background:linear-gradient(90deg,#10b981,#34d399);transition:width .3s}
+.exitem{background:#0b0f19;padding:10px;border-radius:9px;margin-top:8px;border:1px solid #334155}
+.chip-row{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.chip{background:#1e293b;border:1px solid #3b0764;color:#e9d5ff;padding:7px 10px;border-radius:8px;font-size:.76rem;cursor:pointer}
+.chip:active{background:var(--pl)}
+.nav{position:fixed;bottom:0;left:0;right:0;background:rgba(21,28,44,.97);backdrop-filter:blur(10px);display:flex;justify-content:space-around;padding:8px 0 12px;border-top:1px solid #263147;z-index:100}
+.nitem{color:var(--mut);font-size:.7rem;text-align:center;cursor:pointer;flex:1;display:flex;flex-direction:column;align-items:center;gap:2px}
+.nitem.active{color:var(--ac);font-weight:700}
+.tab{display:none}.tab.active{display:block}
+.ocr-hint{font-size:.72rem;color:var(--mut);margin-top:6px;line-height:1.5}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>🚘 جيني برو | النظام المالي والمستشار الذكي</h1>
+  <p>تويوتا كورولا 2015 • الدمام وسيهات • الهدف اليومي: 100 ريال</p>
+</header>
+
+<div class="container">
+
+  <!-- التبويب 1: الرئيسية والسجل -->
+  <div id="tab-main" class="tab active">
+
+    <!-- عداد الهدف اليومي -->
+    <div class="card" style="background:linear-gradient(135deg,#151c2c,#1e1b4b);border-color:#4c1d95">
+      <h2>
+        <span>🎯 عداد الهدف اليومي (100 ريال)</span>
+        <span id="dGoalBadge" class="badge">اليوم الأخير</span>
+      </h2>
+      <div class="pbar"><div class="pfill" id="dGoalBar" style="width:0%"></div></div>
+      <p id="dGoalTxt" style="font-size:.82rem;margin-top:8px;font-weight:700"></p>
+    </div>
+
+    <!-- لوحة المؤشرات -->
+    <div class="card">
+        <h2 id="kpiTitle">📊 لوحة المؤشرات الذكية</h2>
+      <div class="g2">
+        <div class="sbox"><div class="l">إجمالي صافي جيني</div><div class="v" id="tGross">0.00 ر.س</div></div>
+        <div class="sbox"><div class="l">الربح الفعلي (بعد البنزين)</div><div class="v" id="tNet">0.00 ر.س</div></div>
+      </div>
+      <div class="g3" style="margin-top:8px">
+        <div class="sbox"><div class="l">المشاوير المكتملة</div><div class="v" id="tTrips" style="color:#fff">0</div></div>
+        <div class="sbox"><div class="l">الربح الصافي بالساعة</div><div class="v" id="tHourly" style="color:var(--ac)">0 ر.س</div></div>
+        <div class="sbox"><div class="l">بنزين المشاوير</div><div class="v" id="tFuel" style="color:var(--warn)">0 ر.س</div></div>
+      </div>
+      <div class="sbox" style="margin-top:8px;text-align:right;padding:10px 12px">
+        <div style="display:flex;justify-content:space-between;font-size:.78rem">
+          <span style="color:var(--mut)">🏆 أفضل يوم عمل:</span>
+          <strong id="bestDayTxt" style="color:#fcd34d">-</strong>
+        </div>
+        <div style="display:flex;justify-content:space-between;font-size:.78rem;margin-top:6px">
+          <span style="color:var(--mut)">🏠 تغطية إيجار البيت (1,300 ريال):</span>
+          <strong id="rentTxt" style="color:var(--ok)">-</strong>
+        </div>
+        <div class="pbar" style="height:8px;margin-top:5px"><div class="pfill" id="rentBar" style="width:0%"></div></div>
+      </div>
+    </div>
+
+    <!-- الماسح البصري والإدخال -->
+    <div class="card">
+      <h2>📸 إضافة مشاوير جديدة (بالصور أو يدوياً)</h2>
+      <label>اسم اليوم والتاريخ</label>
+      <input type="text" id="scanDate" placeholder="مثلاً: الخميس 15 أكتوبر 2026" onblur="var n=normalizeDate(this.value); if(n){this.value=n; this.dataset.auto='';}">
+
+      <div class="upzone" onclick="document.getElementById('imgIn').click()">
+        <div style="font-size:1.7rem">📲</div>
+        <p>اضغط لرفع صور سجل الرحلات من جيني</p>
+        <span>يدعم مشوار واحد أو عدة مشاوير في نفس الصورة، ويُقرأ الوقت والربح والمسافة والمدة والتاريخ تلقائياً</span>
+        <input type="file" id="imgIn" accept="image/*" multiple style="display:none" onchange="scanScreenshots(this.files)">
+      </div>
+
+      <div id="ocrSt" class="status">⏳ جاري تحليل الصورة واستخراج المشاوير...</div>
+
+      <div id="prevBox" style="display:none;margin-top:12px">
+        <h2 style="font-size:.86rem;color:var(--ok)">✅ راجع المشاوير المستخرجة قبل الحفظ:</h2>
+        <div id="exList"></div>
+        <div class="g2" style="margin-top:8px">
+          <button class="btn ok" style="margin-top:0" onclick="saveExtracted()">💾 اعتماد وحفظ</button>
+          <button class="btn err" style="margin-top:0" onclick="clearExtracted()">✖ إلغاء</button>
+        </div>
+      </div>
+
+      <button class="btn sec" onclick="toggleMan()">➕ أو أضف مشواراً يدوياً</button>
+      <div id="manBox" style="display:none;margin-top:10px;padding-top:10px;border-top:1px solid var(--brd)">
+        <div class="g2">
+          <div><label>الوقت</label><input type="text" id="mTime" placeholder="07:53 م"></div>
+          <div><label>ربح جيني (ريال)</label><input type="number" id="mProf" step="0.01" placeholder="6.57"></div>
+        </div>
+        <div class="g2">
+          <div><label>المسافة (كم)</label><input type="number" id="mDist" step="0.1" placeholder="3.9"></div>
+          <div><label>المدة (دقائق)</label><input type="number" id="mDur" placeholder="10"></div>
+        </div>
+        <button class="btn ok" onclick="addManual()">حفظ المشوار</button>
+      </div>
+    </div>
+
+    <!-- سجل المشاوير -->
+    <div class="card">
+      <h2><span>📜 سجل الأيام والمشاوير</span><span style="font-size:.72rem;color:var(--ac);font-weight:400">اضغط على اليوم للتفاصيل والحذف 👇</span></h2>
+      <div id="daysBox"></div>
+    </div>
+  </div>
+
+  <!-- التبويب 2: عداد السيارة وتعبئة البنزين -->
+  <div id="tab-odo" class="tab">
+    <div class="card">
+      <h2>📟 حاسبة عداد الكورولا (بداية ونهاية اليوم)</h2>
+      <p style="font-size:.76rem;color:var(--mut);line-height:1.5">سجل كم ماشية السيارة أول ما تطلع (يبقى محفوظاً)، ولما تخلص آخر اليوم اكتب العداد النهائي ليحسب لك المسافة الفارغة والبنزين الفعلي بدقة:</p>
+      <label>اليوم</label>
+      <input type="text" id="odoDate" placeholder="الأربعاء 14 أكتوبر 2026" onblur="var n=normalizeDate(this.value); if(n){this.value=n; this.dataset.auto='';}">
+      <div class="g2">
+        <div>
+          <label>عداد بداية اليوم (كم)</label>
+          <input type="number" id="odoStart" placeholder="مثلاً: 245100" oninput="localStorage.setItem('jeeny_odo_start',this.value);calcOdoLive()">
+        </div>
+        <div>
+          <label>عداد نهاية اليوم (كم)</label>
+          <input type="number" id="odoEnd" placeholder="مثلاً: 245185" oninput="calcOdoLive()">
+        </div>
+      </div>
+      <div id="odoLiveRes" class="verdict warn" style="display:none"></div>
+      <button class="btn ok" onclick="saveOdoLog()">💾 حفظ قراءة العداد لهذا اليوم</button>
+
+      <div id="odoHistoryBox" style="margin-top:12px"></div>
+    </div>
+
+    <div class="card">
+      <h2>⛽ سجل تعبئة البنزين الفعلي (المحطة)</h2>
+      <p style="font-size:.76rem;color:var(--mut)">كلما عبأت بنزين للكورولا، سجل المبلغ المدفوع هنا لتعرف إجمالي ما دفعته فعلياً:</p>
+      <div class="g2">
+        <div><label>التاريخ / اليوم</label><input type="text" id="fuelDate" placeholder="14 أكتوبر"></div>
+        <div><label>المبلغ المدفوع (ريال)</label><input type="number" id="fuelAmt" step="0.5" placeholder="مثلاً: 50"></div>
+      </div>
+      <button class="btn" onclick="addFuelRefill()">➕ تسجيل تعبئة بنزين</button>
+
+      <div class="g2" style="margin-top:12px">
+        <div class="sbox"><div class="l">إجمالي ما دفعته بالمحطة</div><div class="v" id="totStationFuel" style="color:var(--err)">0.00 ر.س</div></div>
+        <div class="sbox"><div class="l">بنزين المشاوير التقديري</div><div class="v" id="totEstFuel" style="color:var(--warn)">0.00 ر.س</div></div>
+      </div>
+      <div id="fuelListBox" style="margin-top:10px"></div>
+    </div>
+  </div>
+
+  <!-- التبويب 3: المستشار الذكي الليلي + جيني باس -->
+  <div id="tab-adv" class="tab">
+    <div class="card" style="border-color:#7e22ce">
+      <h2>🌙 المستشار الذكي الليلي (تحليل شامل لمشاويرك)</h2>
+      <p style="font-size:.77rem;color:var(--mut);line-height:1.5">يحلل جميع مشاويرك المسجلة أوتوماتيكياً ويعطيك توصيات نهاية الليل وأفضل أوقات الذروة:</p>
+      <div id="nightReportBox" class="verdict good" style="display:block;margin-top:10px"></div>
+    </div>
+
+    <div class="card">
+      <h2>🎟️ مستشار اشتراك "جيني باس" التلقائي</h2>
+      <div id="passAdvisorBox" class="verdict warn" style="display:block;margin-top:6px"></div>
+    </div>
+
+    <div class="card">
+      <h2>💬 اسأل مستشارك المالي الذكي</h2>
+      <div class="chip-row">
+        <span class="chip" onclick="askAdvisor('best_times')">⏰ ما هي أفضل الأوقات أطلع فيها؟</span>
+        <span class="chip" onclick="askAdvisor('today_eval')">📊 حلل أرباح آخر يوم عمل</span>
+        <span class="chip" onclick="askAdvisor('jeeny_pass')">🎟️ هل أشترك في جيني باس؟</span>
+        <span class="chip" onclick="askAdvisor('plan_100')">🎯 كيف أقفل 100 ريال بأقل تعب؟</span>
+      </div>
+      <label style="margin-top:12px">أو اكتب سؤالك الخاص هنا:</label>
+      <input type="text" id="advInput" placeholder="مثلاً: هل مشاوير العصر أفضل أم الليل؟">
+      <button class="btn" onclick="askCustomAdvisor()">اسأل المستشار الآن</button>
+      <div id="advAnswerBox" class="verdict good" style="display:none"></div>
+    </div>
+  </div>
+
+  <!-- التبويب 4: فحص عرض فوري -->
+  <div id="tab-calc" class="tab">
+    <div class="card">
+      <h2>⚡ فحص العرض قبل القبول (يسوى أو لا؟)</h2>
+      <div class="g2">
+        <div><label>مسافة الوصول للعميل (كم)</label><input type="number" id="cPick" step="0.1" placeholder="2.0"></div>
+        <div><label>مسافة المشوار (كم)</label><input type="number" id="cTrip" step="0.1" placeholder="3.5"></div>
+      </div>
+      <div class="g2">
+        <div><label>الوقت الكلي (دقائق)</label><input type="number" id="cTime" placeholder="10"></div>
+        <div><label>المبلغ الصافي المعروض (ريال)</label><input type="number" id="cPrice" step="0.01" placeholder="6.35"></div>
+      </div>
+      <button class="btn" onclick="evalOffer()">احسب القرار الآن</button>
+      <div id="cRes" class="verdict"></div>
+    </div>
+  </div>
+
+  <!-- التبويب 5: الإعدادات والنسخ الاحتياطي -->
+  <div id="tab-set" class="tab">
+    <div class="card">
+      <h2>🔑 مفتاح Gemini API (اختياري)</h2>
+      <p style="font-size:.76rem;color:var(--mut);line-height:1.5">الموقع يعمل بالكامل بدون مفتاح. إذا توفر لديك مفتاح يبدأ بـ <code>AIzaSy</code> ضعه هنا لتفعيل الإجابات المفتوحة وقراءة الصور السحابية بدقة أعلى:</p>
+      <input type="text" id="apiKeyIn" placeholder="AIzaSy..." oninput="localStorage.setItem('jeeny_ai_key',this.value.trim())">
+    </div>
+    <div class="card">
+      <h2>☁️ النسخ الاحتياطي وإصلاح السجل</h2>
+      <div class="g2">
+        <button class="btn sec" onclick="expData()">⬇️ تصدير كل بياناتي</button>
+        <button class="btn sec" onclick="document.getElementById('impIn').click()">⬆️ استيراد بياناتي</button>
+        <input type="file" id="impIn" accept=".json" style="display:none" onchange="impData(this.files[0])">
+      </div>
+      <button class="btn err" onclick="resetHistory()">🔄 استعادة السجل الأصلي المعتمد</button>
+    </div>
+  </div>
+
+</div>
+
+<nav class="nav">
+  <div class="nitem active" onclick="goTab('main',this)"><span>📜</span><span>السجل</span></div>
+  <div class="nitem" onclick="goTab('odo',this)"><span>⛽</span><span>العداد والبنزين</span></div>
+  <div class="nitem" onclick="goTab('adv',this)"><span>🧠</span><span>المستشار</span></div>
+  <div class="nitem" onclick="goTab('calc',this)"><span>⚡</span><span>فحص عرض</span></div>
+  <div class="nitem" onclick="goTab('set',this)"><span>⚙️</span><span>الإعدادات</span></div>
+</nav>
+
+<script>
+/* ===============================
+   الإعدادات والثوابت
+   =============================== */
+const GAS_KM = 2.33 / 12; // 0.1941667 ريال/كم للكورولا 2015
+const DB_KEY = 'jeeny_corolla_pro_v8_clean97';
+const ODO_KEY = 'jeeny_odo_logs_v1';
+const FUEL_KEY = 'jeeny_fuel_logs_v1';
+const DAILY_TARGET = 100;
+let pending = [];
+
+/* ===============================
+   السجل الافتراضي (97 مشواراً)
+   =============================== */
+const RAW_INIT = [
+  ["الأحد 27 سبتمبر 2026", [["06:34 م",6.35,2.7,5],["06:57 م",6.35,3.8,5],["07:22 م",11.49,3.9,7],["08:43 م",6.35,2.9,5],["08:58 م",6.72,4.8,9]]],
+  ["الاثنين 28 سبتمبر 2026", [["07:51 م",9.30,7.8,13],["08:53 م",7.29,4.0,6],["09:08 م",6.35,4.0,7]]],
+  ["الثلاثاء 29 سبتمبر 2026", [["02:57 م",10.92,10.0,15],["03:26 م",9.70,6.6,9],["03:48 م",6.35,2.9,3],["03:59 م",6.67,2.8,4],["04:16 م",7.25,3.3,8],["04:26 م",8.27,2.5,5],["04:47 م",14.29,7.1,11],["05:15 م",6.96,5.1,8],["05:50 م",6.35,2.5,5]]],
+  ["الخميس 1 أكتوبر 2026", [["06:06 م",10.48,3.9,5],["06:26 م",8.17,2.7,4],["06:46 م",9.84,3.5,7],["07:06 م",7.57,6.2,9],["07:27 م",8.25,2.8,9],["07:44 م",13.77,0.7,2],["08:18 م",11.04,8.0,11],["08:53 م",8.77,3.6,9]]],
+  ["الجمعة 2 أكتوبر 2026", [["04:08 م",7.02,5.6,7]]],
+  ["السبت 3 أكتوبر 2026", [["11:54 ص",7.04,5.8,7],["03:42 م",6.35,3.2,5],["03:55 م",6.35,1.5,4],["04:05 م",6.35,4.5,7],["04:28 م",9.32,8.7,10],["04:49 م",6.35,1.5,4],["05:06 م",8.18,6.4,11],["05:28 م",6.67,1.4,4],["05:42 م",12.32,2.0,4],["06:13 م",7.94,3.2,5],["06:34 م",8.74,7.7,10],["06:49 م",6.35,3.6,6],["07:23 م",6.98,2.5,4],["07:39 م",6.98,1.8,7],["09:02 م",6.35,4.5,6]]],
+  ["الأحد 4 أكتوبر 2026", [["04:11 م",6.35,2.5,5],["04:38 م",6.35,2.0,4],["04:50 م",6.35,4.3,7],["05:01 م",10.53,8.0,11],["05:25 م",10.28,5.1,10],["05:45 م",6.35,2.5,3],["05:59 م",26.57,17.7,24],["07:47 م",6.67,3.8,6],["08:08 م",6.35,2.0,2],["08:20 م",6.35,4.0,6],["08:36 م",20.93,21.0,24],["09:10 م",6.35,4.2,9],["09:40 م",17.14,19.8,24]]],
+  ["الاثنين 5 أكتوبر 2026", [["07:44 م",7.24,5.1,10],["08:25 م",6.35,3.0,6],["09:26 م",7.85,6.6,9]]],
+  ["الثلاثاء 6 أكتوبر 2026", [["03:41 م",8.01,5.5,7],["04:17 م",10.84,6.1,12],["04:44 م",6.35,1.9,6],["05:19 م",16.81,12.4,13]]],
+  ["الأربعاء 7 أكتوبر 2026", [["01:09 م",23.81,15.0,16],["02:35 م",6.35,2.9,5],["03:37 م",8.57,3.5,4],["03:51 م",9.52,2.6,4],["03:57 م",7.94,4.1,5],["04:15 م",11.46,3.5,6],["04:44 م",7.02,5.4,8],["05:16 م",6.35,3.8,5],["05:31 م",8.25,3.2,4],["05:50 م",6.35,3.5,6],["06:12 م",6.81,5.3,7],["06:32 م",6.35,4.1,7]]],
+  ["الخميس 8 أكتوبر 2026", [["04:57 م",6.35,4.3,6],["05:18 م",9.80,3.3,7],["05:38 م",6.67,2.9,4],["06:06 م",8.52,6.2,10],["06:26 م",8.84,6.1,11],["06:43 م",7.38,3.5,5]]],
+  ["الأحد 11 أكتوبر 2026", [["05:18 م",6.35,2.4,5],["05:49 م",7.18,5.3,9],["05:57 م",6.35,2.4,5],["06:12 م",6.37,4.9,7],["06:57 م",6.35,4.4,6],["07:17 م",6.35,2.8,4],["09:49 م",6.67,1.7,3],["11:02 م",7.15,4.8,6],["11:22 م",6.67,2.9,5],["11:56 م",7.52,5.8,10]]],
+  ["الثلاثاء 13 أكتوبر 2026", [["06:11 م",6.35,3.0,5],["06:56 م",9.26,8.7,10],["07:48 م",6.35,3.9,8]]],
+  ["الأربعاء 14 أكتوبر 2026", [["05:08 م",17.01,6.2,8],["05:52 م",6.35,2.7,5],["06:26 م",6.65,4.7,10],["06:57 م",6.35,2.1,4],["07:43 م",6.48,5.1,6]]]
+];
+
+function buildDefault() {
+  return RAW_INIT.map(d => ({
+    date: d[0],
+    rides: d[1].map(r => ({ time: r[0], profit: r[1], dist: r[2], dur: r[3] }))
+  }));
+}
+
+function getDB() {
+  const s = localStorage.getItem(DB_KEY);
+  if (!s) {
+    const def = buildDefault();
+    localStorage.setItem(DB_KEY, JSON.stringify(def));
+    return def;
+  }
+  try { return JSON.parse(s); } catch (e) { return buildDefault(); }
+}
+function saveDB(data) { localStorage.setItem(DB_KEY, JSON.stringify(data)); renderAll(); }
+function getOdoLogs() { return JSON.parse(localStorage.getItem(ODO_KEY) || '[]'); }
+function getFuelLogs() { return JSON.parse(localStorage.getItem(FUEL_KEY) || '[]'); }
+
+/* ===============================
+   تحويل الأرقام العربية → إنجليزية
+   =============================== */
+function toEnNum(str) {
+  if (str == null) return '';
+  const ar = '٠١٢٣٤٥٦٧٨٩';
+  const fa = '۰۱۲۳۴۵۶۷۸۹';
+  let s = String(str);
+  for (let i = 0; i < 10; i++) {
+    s = s.split(ar[i]).join(String(i));
+    s = s.split(fa[i]).join(String(i));
+  }
+  // الفاصلة العربية واللفظة تُعامل كفاصلة عشرية
+  s = s.replace(/[٫٬]/g, '.');
+  // إزالة أي مسافة داخلية بين أرقام
+  s = s.replace(/\s+/g, '');
+  return s;
+}
+
+/* ===============================
+   استخراج الوقت من نص (دقيق جداً)
+   يدعم: 7:53 م، ٧:٥٣ م، 7.53 م، 07:53 م، 7.53م
+   =============================== */
+function extractTime(t) {
+  if (!t) return null;
+  const s = toEnNum(String(t)).replace(/[·•：]/g, ':').replace(/٫/g, '.');
+
+  // البحث عن Pattern ساعة:دقيقة مع م/ص أو ص/م
+  const mm = s.match(/(\d{1,2})\s*[:.]\s*(\d{1,2})/);
+  let h = null, mi = null;
+  if (mm) {
+    h = parseInt(mm[1], 10);
+    mi = mm[2];
+  } else {
+    // صيغة بدون فاصل: 753 → 7:53
+    const d = s.replace(/\D/g, '');
+    if (d.length === 3) { h = parseInt(d[0], 10); mi = d.slice(1); }
+    else if (d.length === 4) { h = parseInt(d.slice(0, 2), 10); mi = d.slice(2); }
+  }
+
+  if (h == null || mi == null) return null;
+  mi = parseInt(mi, 10);
+  if (mi > 59) return null;
+
+  // تحديد ص/م
+  const hasPM = /م/i.test(s) || /pm/i.test(s);
+  const hasAM = /ص/i.test(s) || /am/i.test(s);
+  let ap = 'م';
+  if (hasPM && !hasAM) ap = 'م';
+  else if (hasAM && !hasPM) ap = 'ص';
+  else if (!hasPM && !hasAM) ap = 'م'; // افتراضي مساءً لصور جيني
+
+  if (h === 0) { h = 12; ap = 'ص'; }
+  else if (h > 12 && h < 24) { h -= 12; ap = 'م'; }
+  else if (h > 12 || h < 1) return null;
+
+  return `${String(h).padStart(2, '0')}:${String(mi).padStart(2, '0')} ${ap}`;
+}
+
+/* ===============================
+   استخراج الربح (الأجرة) من نص
+   يميز بين المبلغ (6.57) والوقت (7:53)
+   =============================== */
+function extractProfit(t) {
+  if (!t) return null;
+  const s = toEnNum(String(t)).replace(/[،٫]/g, '.').replace(/,/g, '.').replace(/[^\d.:]/g, ' ');
+
+  // 우선 ابحث عن صيغة X.XX (رقم.Point.رقمين) - الأجرة típicamente
+  let m = s.match(/(\d{1,3}\.\d{2})/);
+  if (m) {
+    const v = parseFloat(m[1]);
+    if (v >= 1 && v < 500) return v.toFixed(2);
+  }
+
+  // صيغة 3-4 أرقام قد تكون الأجرة بالملي (657 → 6.57)
+  m = s.match(/(\d{3,4})/);
+  if (m) {
+    const v = parseInt(m[1], 10) / 100;
+    if (v >= 1 && v < 500) return v.toFixed(2);
+  }
+
+  // صيغة رقم واحد أو رقمين
+  m = s.match(/(\d{1,2})/);
+  if (m) {
+    const v = parseInt(m[1], 10);
+    if (v >= 1 && v < 200) return v.toFixed(2);
+  }
+  return null;
+}
+
+/* ===============================
+   استخراج المسافة من نص
+   =============================== */
+function extractDist(t) {
+  if (!t) return null;
+  let s = toEnNum(String(t)).replace(/[،٫]/g, '.').replace(/,/g, '.');
+  s = s.replace(/كيلو\S*|كم|km|kilometer/gi, ' ').replace(/\s+/g, ' ').trim();
+
+  let m = s.match(/(\d{1,2}\.\d{1,2})/);
+  if (!m) {
+    const g = s.match(/(\d)\s+(\d)/);
+    if (g) m = [g[1] + '.' + g[2], g[1] + '.' + g[2]];
+  }
+  if (!m) m = s.match(/(\d{1,2})/);
+  if (!m) return null;
+  const v = parseFloat(m[1]);
+  if (v > 0 && v < 80) return String(Math.round(v * 10) / 10);
+  return null;
+}
+
+/* ===============================
+   استخراج المدة من نص
+   =============================== */
+function extractDur(t) {
+  if (!t) return null;
+  let s = toEnNum(String(t)).replace(/دقائق|دقيقة|دقيقه|دقايق|min|دك/gi, ' ');
+  const m = s.match(/(\d{1,3})/);
+  if (!m) return null;
+  const v = parseInt(m[1], 10);
+  if (v > 0 && v <= 180) return String(v);
+  return null;
+}
+
+/* ===============================
+   تصويت الأغلبية لاختيار أفضل قراءة
+   =============================== */
+function consolidate(texts, extractor) {
+  const counts = new Map();
+  texts.forEach(t => {
+    const v = extractor(t);
+    if (v == null || v === '') return;
+    const k = String(v);
+    counts.set(k, (counts.get(k) || 0) + 1);
+  });
+  let best = null, bc = -1;
+  for (const [k, c] of counts) { if (c > bc) { bc = c; best = k; } }
+  return best;
+}
+
+/* ===============================
+   التواريخ والأيام (السعودية)
+   =============================== */
+const MONTHS_AR = ['يناير', 'فبراير', 'مارس', 'أبريل', 'مايو', 'يونيو', 'يوليو', 'أغسطس', 'سبتمبر', 'أكتوبر', 'نوفمبر', 'ديسمبر'];
+const MONTHS_KEYS = ['يناير', 'فبراير', 'مارس', 'ابريل', 'مايو', 'يونيو', 'يوليو', 'اغسطس', 'سبتمبر', 'اكتوبر', 'نوفمبر', 'ديسمبر'];
+const DAYS_AR = ['الأحد', 'الاثنين', 'الثلاثاء', 'الأربعاء', 'الخميس', 'الجمعة', 'السبت'];
+
+function monthIndexAr(name) {
+  const n = String(name || '').replace(/^أ/, 'ا').trim();
+  return MONTHS_KEYS.indexOf(n);
+}
+
+/* يُnormilize التاريخ ويحسب اسم اليوم تلقائياً من التاريخ الميلادي */
+function normalizeDate(raw) {
+  if (!raw) return '';
+  const t = toEnNum(String(raw)).replace(/[،,]/g, ' ');
+
+  // Pattern: 15 أكتوبر 2026
+  const m = t.match(/(\d{1,2})\s*(يناير|فبراير|مارس|أبريل|ابريل|مايو|يونيو|يوليو|أغسطس|اغسطس|سبتمبر|أكتوبر|اكتوبر|نوفمبر|ديسمبر)\s*(\d{4})/);
+  if (!m) return '';
+  const day = parseInt(m[1], 10);
+  const mon = monthIndexAr(m[2]);
+  const year = parseInt(m[3], 10);
+  if (mon < 0 || day < 1 || day > 31) return '';
+  const d = new Date(year, mon, day);
+  if (isNaN(d.getTime())) return '';
+  return `${DAYS_AR[d.getDay()]} ${day} ${MONTHS_AR[mon]} ${year}`;
+}
+
+function getSaudiToday() {
+  const now = new Date(new Date().toLocaleString("en-US", { timeZone: "Asia/Riyadh" }));
+  return `${DAYS_AR[now.getDay()]} ${now.getDate()} ${MONTHS_AR[now.getMonth()]} ${now.getFullYear()}`;
+}
+
+function syncTodayDates() {
+  const today = getSaudiToday();
+  ['scanDate', 'odoDate', 'fuelDate'].forEach(id => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    const prevAuto = el.dataset.auto || '';
+    if (!el.value || el.value === prevAuto) {
+      el.value = today;
+      el.dataset.auto = today;
+    }
+  });
+}
+syncTodayDates();
+setInterval(syncTodayDates, 30000);
+
+/* ===============================
+   تحميل القيم المحفوظة
+   =============================== */
+document.getElementById('odoStart').value = localStorage.getItem('jeeny_odo_start') || '';
+document.getElementById('apiKeyIn').value = localStorage.getItem('jeeny_ai_key') || '';
+
+/* ===============================
+   عرض السجل والمؤشرات
+   =============================== */
+function renderAll() {
+  const db = getDB();
+  let tG = 0, tD = 0, tC = 0, tDur = 0;
+  let bestDay = { date: '-', gross: 0 };
+  const box = document.getElementById('daysBox');
+  box.innerHTML = '';
+
+  db.slice().reverse().forEach((day, revIdx) => {
+    const dIdx = db.length - 1 - revIdx;
+    let dG = 0, dD = 0, dT = 0;
+    day.rides.forEach(r => { dG += +r.profit || 0; dD += +r.dist || 0; dT += +r.dur || 0; });
+    if (dG > bestDay.gross) bestDay = { date: day.date, gross: dG };
+
+    const dF = dD * GAS_KM, dN = dG - dF;
+    tG += dG; tD += dD; tC += day.rides.length; tDur += dT;
+
+    let rHtml = '';
+    day.rides.forEach((r, rIdx) => {
+      const rf = (r.dist || 0) * GAS_KM, rn = (r.profit || 0) - rf;
+      rHtml += `<div class="rrow">
+        <div class="rinfo">
+          <div class="rtop"><span>🕒 ${r.time}</span><span style="color:var(--ac)">جيني: ${(+r.profit).toFixed(2)} ر.س</span></div>
+          <div class="rsub">المسافة: ${(+r.dist).toFixed(1)} كم (${r.dur} د) • البنزين: ${rf.toFixed(2)} • <strong style="color:var(--ok)">الصافي: ${rn.toFixed(2)} ر.س</strong></div>
+        </div>
+        <div class="ract">
+          <button class="ibtn edt" onclick="editRide(${dIdx},${rIdx})">✏️</button>
+          <button class="ibtn del" onclick="delRide(${dIdx},${rIdx})">🗑️</button>
+        </div>
+      </div>`;
+    });
+
+    const goalReached = dG >= DAILY_TARGET ? '🔥 تعدى الهدف' : '';
+    const dc = document.createElement('div');
+    dc.className = 'dcard';
+    dc.id = 'dc-' + dIdx;
+    dc.innerHTML = `
+      <div class="dhdr" onclick="document.getElementById('dc-${dIdx}').classList.toggle('open')">
+        <div class="dtitle"><span>📅 ${day.date}</span><span class="badge">${day.rides.length} مشاوير ${goalReached}</span></div>
+        <div class="dsum"><span style="color:var(--ok);font-weight:800">صافي: ${dN.toFixed(2)} ر.س</span>
+          <button class="ibtn del" onclick="event.stopPropagation();delDay(${dIdx})">🗑️</button>
+        </div>
+      </div>
+      <div class="drides">
+        <div style="font-size:.74rem;color:var(--mut);margin-bottom:7px;display:flex;justify-content:space-between">
+          <span>إجمالي جيني: ${dG.toFixed(2)} ر.س</span><span>المسافة: ${dD.toFixed(1)} كم (${dT} د)</span><span>البنزين: ${dF.toFixed(2)} ر.س</span>
+        </div>${rHtml}
+      </div>`;
+    box.appendChild(dc);
+  });
+
+  const tF = tD * GAS_KM, tN = tG - tF;
+  const hourlyNet = tDur > 0 ? (tN / (tDur / 60)) : 0;
+
+  document.getElementById('kpiTitle').innerText = `📊 لوحة المؤشرات الذكية (${tC} مشواراً)`;
+  document.getElementById('tGross').innerText = tG.toFixed(2) + ' ر.س';
+  document.getElementById('tNet').innerText = tN.toFixed(2) + ' ر.س';
+  document.getElementById('tTrips').innerText = tC;
+  document.getElementById('tHourly').innerText = hourlyNet.toFixed(1) + ' ر.س/س';
+  document.getElementById('tFuel').innerText = tF.toFixed(2) + ' ر.س';
+  document.getElementById('bestDayTxt').innerText = `${bestDay.date} (${bestDay.gross.toFixed(2)} ر.س)`;
+
+  const rentPct = Math.min(100, (tN / 1300) * 100);
+  document.getElementById('rentBar').style.width = rentPct + '%';
+  document.getElementById('rentTxt').innerText = `${tN.toFixed(2)} / 1,300 ر.س (متبقي: ${Math.max(0, 1300 - tN).toFixed(2)} ر.س)`;
+
+  const lastDay = lastWorkDay(db);
+  const lastGross = lastDay.rides.reduce((a, b) => a + (+b.profit || 0), 0);
+  const dPct = Math.min(100, (lastGross / DAILY_TARGET) * 100);
+  document.getElementById('dGoalBadge').innerText = lastDay.date;
+  document.getElementById('dGoalBar').style.width = dPct + '%';
+  if (lastGross >= DAILY_TARGET) {
+    document.getElementById('dGoalTxt').innerHTML = `<span style="color:#34d399">🎉 كفو! قفلت هدف الـ 100 ريال وحققت <strong>${lastGross.toFixed(2)} ر.س</strong> (زيادة +${(lastGross - DAILY_TARGET).toFixed(2)} ر.س)!</span>`;
+  } else {
+    document.getElementById('dGoalTxt').innerHTML = `حققت في (${lastDay.date}): <strong style="color:var(--ac)">${lastGross.toFixed(2)} ر.س</strong> — باقي لك <strong style="color:var(--warn)">${(DAILY_TARGET - lastGross).toFixed(2)} ر.س</strong> لتقفل الـ 100 ريال وترتاح!`;
+  }
+
+  renderOdoAndFuel(tF);
+  renderSmartAdvisor(db, tG, tN, tC, tDur);
+}
+
+function lastWorkDay(db) {
+  if (!db || !db.length) return { date: getSaudiToday(), rides: [] };
+  const today = db.find(d => d.date === getSaudiToday());
+  if (today && today.rides.length) return today;
+  for (let i = db.length - 1; i >= 0; i--) if (db[i].rides && db[i].rides.length) return db[i];
+  return db[db.length - 1];
+}
+
+/* ===============================
+   عداد السيارة والبنزين
+   =============================== */
+function calcOdoLive() {
+  const s = parseFloat(toEnNum(document.getElementById('odoStart').value)) || 0;
+  const e = parseFloat(toEnNum(document.getElementById('odoEnd').value)) || 0;
+  const dt = document.getElementById('odoDate').value.trim();
+  const box = document.getElementById('odoLiveRes');
+  if (s <= 0 || e <= s) { box.style.display = 'none'; return; }
+
+  const actualKm = e - s;
+  const actualGas = actualKm * GAS_KM;
+  const db = getDB();
+  const dayObj = db.find(x => x.date === dt) || db[db.length - 1] || { rides: [] };
+  const appKm = dayObj.rides.reduce((a, b) => a + (+b.dist || 0), 0);
+  const dayGross = dayObj.rides.reduce((a, b) => a + (+b.profit || 0), 0);
+  const emptyKm = Math.max(0, actualKm - appKm);
+  const realNet = dayGross - actualGas;
+
+  box.style.display = 'block';
+  box.innerHTML = `
+    • <strong>المسافة الكلية بطبلون الكورولا:</strong> ${actualKm.toFixed(1)} كم<br>
+    • <strong>مسافة المشاوير بالتطبيق:</strong> ${appKm.toFixed(1)} كم | <strong>المسافة الفارغة (الضائعة):</strong> ${emptyKm.toFixed(1)} كم<br>
+    • <strong>تكلفة البنزين الفعلية لليوم:</strong> <span style="color:var(--err)">${actualGas.toFixed(2)} ريال</span><br>
+    • <strong>ربحك الصافي الحقيقي لليوم:</strong> <strong style="color:var(--ok)">${realNet.toFixed(2)} ريال</strong>
+  `;
+}
+
+function saveOdoLog() {
+  const s = parseFloat(toEnNum(document.getElementById('odoStart').value)) || 0;
+  const e = parseFloat(toEnNum(document.getElementById('odoEnd').value)) || 0;
+  const dt = document.getElementById('odoDate').value.trim() || 'اليوم';
+  if (s <= 0 || e <= s) return alert('الرجاء إدخال عداد النهاية أكبر من عداد البداية');
+
+  const actualKm = e - s;
+  const actualGas = actualKm * GAS_KM;
+  const logs = getOdoLogs();
+  logs.push({ date: dt, start: s, end: e, km: actualKm, gas: actualGas });
+  localStorage.setItem(ODO_KEY, JSON.stringify(logs));
+  localStorage.setItem('jeeny_odo_start', e);
+  document.getElementById('odoStart').value = e;
+  document.getElementById('odoEnd').value = '';
+  document.getElementById('odoLiveRes').style.display = 'none';
+  renderAll();
+  alert('✅ تم حفظ قراءة العداد، وتم تحديث عداد البداية لليوم القادم تلقائياً!');
+}
+
+function delOdo(idx) {
+  const logs = getOdoLogs();
+  logs.splice(idx, 1);
+  localStorage.setItem(ODO_KEY, JSON.stringify(logs));
+  renderAll();
+}
+
+function addFuelRefill() {
+  const dt = document.getElementById('fuelDate').value.trim() || 'اليوم';
+  const amt = parseFloat(toEnNum(document.getElementById('fuelAmt').value)) || 0;
+  if (amt <= 0) return alert('الرجاء إدخال مبلغ تعبئة البنزين');
+  const logs = getFuelLogs();
+  logs.push({ date: dt, amt });
+  localStorage.setItem(FUEL_KEY, JSON.stringify(logs));
+  document.getElementById('fuelAmt').value = '';
+  renderAll();
+}
+
+function delFuel(idx) {
+  const logs = getFuelLogs();
+  logs.splice(idx, 1);
+  localStorage.setItem(FUEL_KEY, JSON.stringify(logs));
+  renderAll();
+}
+
+function renderOdoAndFuel(estTripFuel) {
+  const odoLogs = getOdoLogs();
+  const odoBox = document.getElementById('odoHistoryBox');
+  odoBox.innerHTML = odoLogs.slice().reverse().map((o, rev) => {
+    const idx = odoLogs.length - 1 - rev;
+    return `<div class="rrow">
+      <div class="rinfo">
+        <div class="rtop"><span>📅 ${o.date}</span><span style="color:var(--warn)">مشيت: ${o.km.toFixed(1)} كم</span></div>
+        <div class="rsub">من ${o.start} إلى ${o.end} • تكلفة البنزين الفعلية: <strong style="color:var(--err)">${o.gas.toFixed(2)} ر.س</strong></div>
+      </div>
+      <button class="ibtn del" onclick="delOdo(${idx})">🗑️</button>
+    </div>`;
+  }).join('');
+
+  const fuelLogs = getFuelLogs();
+  const totPaid = fuelLogs.reduce((a, b) => a + (+b.amt || 0), 0);
+  document.getElementById('totStationFuel').innerText = totPaid.toFixed(2) + ' ر.س';
+  document.getElementById('totEstFuel').innerText = estTripFuel.toFixed(2) + ' ر.س';
+
+  const fBox = document.getElementById('fuelListBox');
+  fBox.innerHTML = fuelLogs.slice().reverse().map((f, rev) => {
+    const idx = fuelLogs.length - 1 - rev;
+    const liters = (f.amt / 2.33).toFixed(1);
+    return `<div class="rrow">
+      <div class="rinfo">
+        <div class="rtop"><span>⛽ ${f.date}</span><span style="color:var(--err)">دفعت: ${f.amt.toFixed(2)} ر.س</span></div>
+        <div class="rsub">حوالي ${liters} لتر بنزين (تكفي لقطع ~${(liters * 12).toFixed(0)} كم بالكورولا)</div>
+      </div>
+      <button class="ibtn del" onclick="delFuel(${idx})">🗑️</button>
+    </div>`;
+  }).join('');
+}
+
+/* ===============================
+   المستشار الذكي
+   =============================== */
+function parseHour24(timeStr) {
+  const clean = toEnNum(timeStr || '');
+  const m = clean.match(/(\d{1,2}):(\d{2})/);
+  if (!m) return 17;
+  let h = parseInt(m[1]);
+  const isPM = clean.includes('م') || clean.toLowerCase().includes('pm');
+  const isAM = clean.includes('ص') || clean.toLowerCase().includes('am');
+  if (isPM && h < 12) h += 12;
+  if (isAM && h === 12) h = 0;
+  return h;
+}
+
+function renderSmartAdvisor(db, tG, tN, tC, tDur) {
+  const lastDay = lastWorkDay(db);
+  const lGross = lastDay.rides.reduce((a, b) => a + (+b.profit || 0), 0);
+  const lDist = lastDay.rides.reduce((a, b) => a + (+b.dist || 0), 0);
+  const lDur = lastDay.rides.reduce((a, b) => a + (+b.dur || 0), 0);
+  const lNet = lGross - (lDist * GAS_KM);
+
+  const buckets = {
+    'الظهر والعصر (1 م - 5 م)': { count: 0, profit: 0, mins: 0 },
+    'ذروة المغرب (5 م - 8 م)': { count: 0, profit: 0, mins: 0 },
+    'فترة الليل (8 م - 12 ص)': { count: 0, profit: 0, mins: 0 }
+  };
+
+  let estTotalCommission = 0;
+  let ridesOver214 = 0;
+
+  db.forEach(d => d.rides.forEach(r => {
+    const h = parseHour24(r.time);
+    const bKey = (h >= 13 && h < 17) ? 'الظهر والعصر (1 م - 5 م)' : (h >= 17 && h < 20) ? 'ذروة المغرب (5 م - 8 م)' : 'فترة الليل (8 م - 12 ص)';
+    buckets[bKey].count++;
+    buckets[bKey].profit += (+r.profit || 0);
+    buckets[bKey].mins += (+r.dur || 0);
+
+    const comm = (+r.profit || 0) * 0.282;
+    estTotalCommission += comm;
+    if (comm > 2.14) ridesOver214++;
+  }));
+
+  const nowH = new Date().getHours();
+  const nightGreeting = (nowH >= 0 && nowH < 5) ? '🌙 <strong>تقرير ما بعد منتصف الليل جاهز:</strong>' : '📊 <strong>التقرير التحليلي لآخر شفت عمل:</strong>';
+  const peak = Object.entries(buckets).sort((a, b) => b[1].profit - a[1].profit)[0];
+  const goalPct = Math.min(100, (lGross / DAILY_TARGET) * 100);
+
+  document.getElementById('nightReportBox').innerHTML = `
+    ${nightGreeting}<br>
+    • <strong>حصيلة (${lastDay.date}):</strong> أنجزت <strong>${lastDay.rides.length} مشاوير</strong> في <strong>${lDur} دقيقة</strong> قيادة فعلية، بصافي جيني <strong>${lGross.toFixed(2)} ر.س</strong> وصافي فعلي بـجيبك <strong>${lNet.toFixed(2)} ر.س</strong>.<br>
+    • <strong>تقييم هدف الـ 100 ريال:</strong> ${lGross >= 100 ? 'حققت الهدف اليومي بالكامل! 👏' : `وصلت إلى ${goalPct.toFixed(0)}٪ من هدف الـ 100 ريال (كان يكفيك ${Math.ceil(Math.max(0, 100 - lGross) / 7.5)} مشاوير قصيرة إضافية لتقفيل الـ 100 ريال).`}<br>
+    • <strong>أقوى فترة ذهبية في تاريخك:</strong> فترة <strong>${peak[0]}</strong> حيث أنجزت فيها <strong>${peak[1].count} مشواراً</strong> بإجمالي <strong>${peak[1].profit.toFixed(2)} ريال</strong>!
+  `;
+
+  const avgComm = tC > 0 ? (estTotalCommission / tC) : 0;
+  const pass35Diff = (avgComm * 35) - 75;
+  const passBox = document.getElementById('passAdvisorBox');
+  if (avgComm > 2.18) {
+    passBox.className = 'verdict good';
+    passBox.innerHTML = `✅ <strong>ينصح بالاشتراك في باقة 75 ريال (35 مشوار):</strong><br>متوسط عمولة جيني في مشاويرك هو <strong>${avgComm.toFixed(2)} ريال للمشوار</strong> (أعلى من تكلفة الباقة 2.14 ريال). الاشتراك سيوفر لك حوالي <strong>${pass35Diff.toFixed(1)} ريال</strong> لكل 35 مشوار بشرط إنهائها في 7 أيام.`;
+  } else {
+    passBox.className = 'verdict warn';
+    passBox.innerHTML = `⚠️ <strong>لا تشترك في "جيني باس" حالياً:</strong><br>بناءً على مشاويرك الـ ${tC}، متوسط عمولة جيني التي تُخصم منك هو <strong>${avgComm.toFixed(2)} ريال للمشوار</strong>، بينما باقة الـ 50 تكلفك <strong>2.50 ريال/مشوار</strong> وباقة الـ 75 تكلفك <strong>2.14 ريال/مشوار</strong>.<br>• فقط <strong>${ridesOver214} مشواراً من أصل ${tC}</strong> كانت عمولتها أعلى من سعر الباقة. استمر بدون اشتراك لأن مشاويرك القصيرة أوفر لك!`;
+  }
+}
+
+function askAdvisor(topic) {
+  const db = getDB();
+  const box = document.getElementById('advAnswerBox');
+  box.style.display = 'block';
+
+  if (topic === 'best_times') {
+    box.innerHTML = `⏰ <strong>أفضل أوقات الخروج بناءً على تحليل مشاويرك في الدمام وسيهات:</strong><br>
+    1. <strong>الشفت الذهبي الأول (3:30 عصراً إلى 7:30 مساءً):</strong> هذا التوقيت حققت فيه أسرع مشاوير متتالية بدون توقف بمعدل يفوق 60 ريال/ساعة.<br>
+    2. <strong>الشفت الثاني (8:30 مساءً إلى 10:30 ليلاً):</strong> الشوارع تكون مفتوحة وتصطاد فيه مشاوير متوسطة وطويلة ترفع عدادك بسرعة.`;
+  } else if (topic === 'today_eval') {
+    const d = lastWorkDay(db);
+    const g = d.rides.reduce((a, b) => a + (+b.profit || 0), 0);
+    const m = d.rides.reduce((a, b) => a + (+b.dur || 0), 0);
+    const best = d.rides.slice().sort((a, b) => (+b.profit || 0) - (+a.profit || 0))[0];
+    box.innerHTML = `📊 <strong>تقييم يوم (${d.date}):</strong><br>
+    • حققت <strong>${g.toFixed(2)} ريال</strong> في <strong>${m} دقيقة</strong> فقط (بمعدل ممتاز قدره <strong>${((g / (m || 1)) * 60).toFixed(0)} ريال/ساعة</strong>).<br>
+    • أفضل مشوار لك هذا اليوم كان الساعة <strong>${best?.time || '-'}</strong> بقيمة <strong>${(+best?.profit || 0).toFixed(2)} ريال</strong>.<br>
+    • نصيحة الغد: لو كملت ساعة واحدة إضافية بنفس هذا الإيقاع ستكسر حاجز الـ <strong>100 ريال</strong> بكل راحة.`;
+  } else if (topic === 'jeeny_pass') {
+    box.innerHTML = document.getElementById('passAdvisorBox').innerHTML;
+  } else if (topic === 'plan_100') {
+    const n = db.reduce((a, b) => a + b.rides.length, 0);
+    const avg = n ? db.reduce((a, b) => a + b.rides.reduce((x, r) => x + (+r.profit || 0), 0), 0) / n : 8.5;
+    const need = Math.max(1, Math.ceil(100 / (avg || 8.5)));
+    box.innerHTML = `🎯 <strong>أسهل خطة لتقفيل 100 ريال يومياً بالكورولا بدون تعب:</strong><br>
+    • متوسط ربحك للمشوار الواحد في تاريخك هو <strong>${avg.toFixed(2)} ريال</strong>.<br>
+    • هذا يعني أنك تحتاج فقط إلى <strong>${need} مشواراً في اليوم</strong>.<br>
+    • اطلع الساعة <strong>3:45 عصراً إلى 7:30 مساءً</strong> في خط (طريق الخليج - الزهور - المحمدية - سيهات)، وستقفل الـ 100 ريال قبل صلاة العشاء وأنت مرتاح.`;
+  }
+}
+
+async function askCustomAdvisor() {
+  const q = document.getElementById('advInput').value.trim();
+  if (!q) return;
+  const box = document.getElementById('advAnswerBox');
+  box.style.display = 'block';
+  box.innerHTML = '⏳ جاري تحليل بياناتك والإجابة...';
+
+  const key = (localStorage.getItem('jeeny_ai_key') || '').trim();
+  const db = getDB();
+  if (key.startsWith('AIza')) {
+    try {
+      const prompt = `أنت المستشار المالي لكابتن جيني يقود كورولا 2015 في الدمام وسيهات، هدفه اليومي 100 ريال وإيجار بيته 1300 ريال. لديه ${db.reduce((a,b)=>a+b.rides.length,0)} مشواراً. أجب باختصار وصراحة على سؤاله: ${q}`;
+      const r = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${encodeURIComponent(key)}`, {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }] })
+      });
+      const d = await r.json();
+      const ans = d.candidates?.[0]?.content?.parts?.[0]?.text;
+      if (ans) { box.innerHTML = ans.replace(/\n/g, '<br>'); return; }
+    } catch (e) {}
+  }
+  if (q.includes('وقت') || q.includes('اوقات') || q.includes('متى')) askAdvisor('best_times');
+  else if (q.includes('باس') || q.includes('اشتراك') || q.includes('بلس')) askAdvisor('jeeny_pass');
+  else if (q.includes('100') || q.includes('هدف')) askAdvisor('plan_100');
+  else askAdvisor('today_eval');
+}
+
+/* ===============================
+   تعديل وحذف المشاوير
+   =============================== */
+function delRide(dIdx, rIdx) {
+  const db = getDB();
+  if (!confirm(`حذف المشوار (${db[dIdx].rides[rIdx].profit} ريال)؟`)) return;
+  db[dIdx].rides.splice(rIdx, 1);
+  if (!db[dIdx].rides.length) db.splice(dIdx, 1);
+  saveDB(db);
+  setTimeout(() => { const el = document.getElementById('dc-' + dIdx); if (el) el.classList.add('open'); }, 40);
+}
+
+function editRide(dIdx, rIdx) {
+  const db = getDB(), r = db[dIdx].rides[rIdx];
+  const t = prompt('الوقت:', r.time); if (t === null) return;
+  const p = prompt('ربح جيني (ريال):', r.profit); if (p === null) return;
+  const d = prompt('المسافة (كم):', r.dist); if (d === null) return;
+  const u = prompt('المدة (دقائق):', r.dur); if (u === null) return;
+  db[dIdx].rides[rIdx] = { time: t.trim() || r.time, profit: parseFloat(toEnNum(p)) || 0, dist: parseFloat(toEnNum(d)) || 0, dur: parseInt(toEnNum(u)) || 0 };
+  saveDB(db);
+  setTimeout(() => { const el = document.getElementById('dc-' + dIdx); if (el) el.classList.add('open'); }, 40);
+}
+
+function delDay(dIdx) {
+  const db = getDB();
+  if (!confirm(`حذف يوم (${db[dIdx].date}) بالكامل؟`)) return;
+  db.splice(dIdx, 1);
+  saveDB(db);
+}
+
+function toggleMan() {
+  const b = document.getElementById('manBox');
+  b.style.display = b.style.display === 'none' ? 'block' : 'none';
+}
+
+function addManual() {
+  const dt = document.getElementById('scanDate').value.trim() || 'اليوم';
+  const tm = toEnNum(document.getElementById('mTime').value.trim()) || '05:00 م';
+  const pr = parseFloat(toEnNum(document.getElementById('mProf').value)) || 0;
+  const ds = parseFloat(toEnNum(document.getElementById('mDist').value)) || 0;
+  const dr = parseInt(toEnNum(document.getElementById('mDur').value)) || 5;
+  if (pr <= 0) return alert('الرجاء إدخال مبلغ الربح');
+  const db = getDB();
+  let day = db.find(x => x.date === dt);
+  if (!day) { day = { date: dt, rides: [] }; db.push(day); }
+  day.rides.push({ time: tm, profit: pr, dist: ds, dur: dr });
+  saveDB(db);
+  document.getElementById('mProf').value = '';
+  document.getElementById('mDist').value = '';
+  alert('✅ تمت إضافة المشوار بنجاح');
+}
+
+/* ===============================
+   الماسح البصري (OCR) لصور جيني
+   =============================== */
+
+// تحويل ملف صورة إلى Canvas مع تحسين الدقة
+function fileToCanvas(file) {
+  return new Promise(res => {
+    const img = new Image();
+    img.onload = () => {
+      const target = img.width < 1100 ? 1600 : Math.min(img.width, 2000);
+      const scale = target / img.width;
+      const c = document.createElement('canvas');
+      c.width = Math.round(img.width * scale);
+      c.height = Math.round(img.height * scale);
+      const ctx = c.getContext('2d');
+      ctx.imageSmoothingEnabled = true;
+      ctx.drawImage(img, 0, 0, c.width, c.height);
+      URL.revokeObjectURL(img.src);
+      res(c);
+    };
+    img.src = URL.createObjectURL(file);
+  });
+}
+
+// تقسيم الصورة إلى بطاقات وقراءة كل بطاقة
+async function sliceAndReadJeenyCards(canvas, stEl, curImg, totImg) {
+  const w = canvas.width, h = canvas.height;
+  const worker = await Tesseract.createWorker(['ara', 'eng']);
+  await worker.setParameters({ tessedit_ocr_engine_mode: 1 }); // LSTM only
+
+  // قراءة التاريخ من الشريط العلوي
+  stEl.innerText = `⏳ صورة (${curImg}/${totImg}): قراءة التاريخ من الشريط العلوي...`;
+  const headerTexts = await ocrRegion(worker, canvas, w * 0.15, 0, w * 0.85, Math.max(60, h * 0.18), { modes: ['normal', 'thresh'], psms: [6, 7, 11] });
+  let headerDate = '';
+  for (const t of headerTexts) { headerDate = normalizeDate(t); if (headerDate) break; }
+
+  // كشف أماكن البطاقات (بالبحث عن الألوان الخضراء للأجرة)
+  const anchors = findGreenCardTops(canvas);
+  const cardAnchors = anchors.length ? anchors : [Math.floor(h * 0.25)];
+  const results = [];
+
+  for (let c = 0; c < cardAnchors.length; c++) {
+    const gy = cardAnchors[c];
+    const next = cardAnchors[c + 1] || h;
+    const cardH = Math.max(140, next - gy);
+    stEl.innerText = `⏳ صورة (${curImg}/${totImg}): قراءة المشوار ${c + 1} من ${cardAnchors.length}...`;
+
+    // الأجرة (على يسار الأعلى - لون أخضر)
+    const priceTexts = await ocrRegion(worker, canvas, 0, gy - h * 0.05, w * 0.45, Math.max(55, h * 0.13), { modes: ['green', 'normal'], psms: [7, 6], wl: WL_NUM });
+    // الوقت (على يمين الأعلى)
+    const timeTexts = await ocrRegion(worker, canvas, w * 0.5, gy - h * 0.06, w * 0.5, Math.max(55, h * 0.14), { modes: ['normal', 'dark'], psms: [7, 6], wl: WL_TIME });
+    // المسافة (يسار الأسفل)
+    const kmTexts = await ocrRegion(worker, canvas, 0, gy + cardH * 0.2, w * 0.35, cardH * 0.35, { modes: ['normal', 'thresh'], psms: [7, 6], wl: WL_NUM });
+    // المدة (تحت المسافة)
+    const durTexts = await ocrRegion(worker, canvas, 0, gy + cardH * 0.55, w * 0.35, cardH * 0.38, { modes: ['normal', 'thresh'], psms: [7, 6], wl: WL_INT });
+
+    results.push({
+      time: consolidate(timeTexts, extractTime) || '',
+      profit: parseFloat(consolidate(priceTexts, extractProfit)) || 0,
+      dist: parseFloat(consolidate(kmTexts, extractDist)) || 0,
+      dur: parseInt(consolidate(durTexts, extractDur), 10) || 0
+    });
+  }
+
+  await worker.terminate();
+  return { rides: results, date: headerDate };
+}
+
+const WL_NUM  = '0123456789٠١٢٣٤٥٦٧٨٩.,٫';
+const WL_INT  = '0123456789٠١٢٣٤٥٦٧٨٩';
+const WL_TIME = '0123456789٠١٢٣٤٥٦٧٨٩:．.مصaApP ';
+
+function findGreenCardTops(canvas) {
+  const w = canvas.width, h = canvas.height;
+  const imgData = canvas.getContext('2d').getImageData(0, 0, w, h).data;
+  const greenRows = [];
+  const endX = Math.floor(w * 0.5);
+  for (let y = Math.floor(h * 0.04); y < h * 0.97; y++) {
+    let gCount = 0;
+    for (let x = 0; x < endX; x++) {
+      const i = (y * w + x) * 4;
+      const r = imgData[i], g = imgData[i + 1], b = imgData[i + 2];
+      if (g > 100 && g > r + 25 && g > b + 10 && r < 195) gCount++;
+    }
+    if (gCount >= 5) greenRows.push(y);
+  }
+  const groups = [];
+  for (const y of greenRows) {
+    const last = groups[groups.length - 1];
+    if (last && y - last[last.length - 1] <= Math.max(45, h * 0.05)) last.push(y);
+    else groups.push([y]);
+  }
+  let anchors = groups.map(g => Math.round((g[0] + g[g.length - 1]) / 2));
+  anchors = anchors.filter((y, i) => i === 0 || y - anchors[i - 1] > h * 0.08);
+  return anchors;
+}
+
+async function ocrRegion(worker, canvas, x, y, cw, ch, opts) {
+  const texts = [];
+  const modes = opts.modes || ['normal'];
+  const psms = opts.psms || [6, 7];
+  for (const mode of modes) {
+    const img = cropCanvas(canvas, x, y, cw, ch, mode);
+    for (const psm of psms) {
+      try {
+        await worker.setParameters({ tessedit_pageseg_mode: String(psm), tessedit_char_whitelist: opts.wl || '' });
+        const res = await worker.recognize(img);
+        const txt = (res.data.text || '').trim();
+        if (txt) texts.push(txt);
+      } catch (e) {}
+    }
+  }
+  return texts;
+}
+
+function cropCanvas(src, x, y, cw, ch, mode) {
+  const scale = 4;
+  x = Math.max(0, x); y = Math.max(0, y);
+  cw = Math.max(8, Math.min(cw, src.width - x));
+  ch = Math.max(8, Math.min(ch, src.height - y));
+  const c = document.createElement('canvas');
+  c.width = Math.max(32, Math.round(cw * scale));
+  c.height = Math.max(32, Math.round(ch * scale));
+  const ctx = c.getContext('2d');
+  ctx.fillStyle = '#FFFFFF';
+  ctx.fillRect(0, 0, c.width, c.height);
+  ctx.imageSmoothingEnabled = true;
+  ctx.drawImage(src, x, y, cw, ch, 0, 0, c.width, c.height);
+  const id = ctx.getImageData(0, 0, c.width, c.height), d = id.data;
+  const cut = mode === 'green' ? 0 : mode === 'dark' ? 155 : mode === 'thresh' ? 180 : mode === 'graysoft' ? 225 : 200;
+  for (let i = 0; i < d.length; i += 4) {
+    const r = d[i], g = d[i + 1], b = d[i + 2];
+    const lum = 0.299 * r + 0.587 * g + 0.114 * b;
+    let ink = false;
+    if (mode === 'green') ink = (g > 85 && g > r + 16 && g > b + 6);
+    else ink = lum < cut;
+    const v = ink ? 0 : 255;
+    d[i] = d[i + 1] = d[i + 2] = v;
+  }
+  ctx.putImageData(id, 0, 0);
+  return c.toDataURL('image/png');
+}
+
+/* ==============================-
+   سير العمل عند رفع الصور
+   ==============================- */
+async function scanScreenshots(files) {
+  if (!files || !files.length) return;
+  const st = document.getElementById('ocrSt');
+  st.style.display = 'block';
+  pending = [];
+  let foundDate = '';
+
+  for (let i = 0; i < files.length; i++) {
+    st.innerText = `⏳ جاري فحص الصورة (${i + 1} من ${files.length}) واستخراج المشاوير...`;
+    const canvas = await fileToCanvas(files[i]);
+    const local = await sliceAndReadJeenyCards(canvas, st, i + 1, files.length);
+    let rides = local.rides || [];
+    let imgDate = normalizeDate(local.date) || local.date || '';
+
+    const apiKey = (localStorage.getItem('jeeny_ai_key') || '').trim();
+    if (apiKey.startsWith('AIza')) {
+      st.innerText = `⏳ صورة (${i + 1} من ${files.length}): تدقيق إضافي بالذكاء الاصطناعي...`;
+      const gem = await tryGeminiVision(canvas, apiKey);
+      const gemDate = normalizeDate(gem.date) || gem.date || '';
+      if (gemDate) imgDate = gemDate;
+      if (gem.rides && gem.rides.length) {
+        rides = gem.rides.map((g, idx) => mergeRide(g, rides[idx] || {}));
+      }
+    }
+    if (imgDate) foundDate = imgDate;
+    rides.forEach(r => { if (r.profit || r.time || r.dist || r.dur) pending.push(r); });
+  }
+
+  if (foundDate) {
+    const el = document.getElementById('scanDate');
+    el.value = foundDate;
+    el.dataset.auto = '';
+  }
+  st.style.display = 'none';
+  document.getElementById('imgIn').value = '';
+  if (!pending.length) alert('لم يتم العثور على مشاوير مكتملة في الصورة. جرّب صورة أوضح لسجل الرحلات.');
+  renderPreview();
+}
+
+function mergeRide(g, loc) {
+  return {
+    time: parseTimeFromText(g.time) || loc.time || '',
+    profit: +g.profit > 0 ? +g.profit : (loc.profit || 0),
+    dist: +g.dist > 0 ? +g.dist : (loc.dist || 0),
+    dur: +g.dur > 0 ? +g.dur : (loc.dur || 0)
+  };
+}
+
+function parseTimeFromText(raw) {
+  if (!raw) return '';
+  const t = toEnNum(String(raw)).replace(/[·•]/g, ':');
+  const m = t.match(/(\d{1,2})\s*[:.]\s*(\d{2})\s*(صباحا?|مساء?|ص|م|am|pm)?/i);
+  if (!m) return '';
+  let h = parseInt(m[1], 10);
+  const min = m[2];
+  let ap = (m[3] || '').toLowerCase();
+  if (!ap) {
+    if (/[م]|pm/i.test(t)) ap = 'م';
+    else if (/[ص]|am/i.test(t)) ap = 'ص';
+    else ap = 'م';
+  } else if (ap.startsWith('pm') || ap.startsWith('م')) ap = 'م';
+  else ap = 'ص';
+  if (h === 0) { h = 12; ap = 'ص'; }
+  else if (h > 12 && h < 24) { h -= 12; ap = 'م'; }
+  else if (h < 1 || h > 12) return '';
+  return `${String(h).padStart(2, '0')}:${min} ${ap}`;
+}
+
+/* Gemini Vision (اختياري) */
+async function tryGeminiVision(canvas, key) {
+  try {
+    const b64 = canvas.toDataURL('image/jpeg', 0.92).split(',')[1];
+    const prompt = `أنت تقرأ لقطة شاشة من تطبيق الكابتن "جيني" (Jeenny) بتنسيق عربي من اليمين لليسار.
+داخل الصورة قد يوجد مشوار واحد أو عدة مشاوير مكتملة، كل مشوار داخل بطاقة مستقلة. استخرج كل مشوار في الصورة.
+
+قواعد قراءة كل بطاقة:
+- الوقت: على يمين البطاقة في نفس سطر الأجرة، بصيغة "٧:٥٣ م" (أرقام عربية-هندية + م/ص). حوّله لأرقام لاتينية هكذا "07:53 م". هذا هو الوقت وليس الأجرة.
+- الأجرة (profit): المبلغ الأخضر على يسار البطاقة العلوي مثل 6.57. لا تخلط بينها وبين الوقت (6.57 ليست 6:57).
+- المسافة (dist): على اليسار أسفل الأجرة بصيغة "٣,٩ كم" أو "3,9 كم" (الفاصلة العربية هي الفاصلة العشرية) = 3.9
+- المدة (dur): أسفل المسافة بصيغة "١٠ دقائق" = 10
+- التاريخ: من الشريط العلوي مثل "خميس ١٥ أكتوبر، ٢٠٢٦"، أخرجه بصيغة "الخميس 15 أكتوبر 2026" مع حساب اسم اليوم الصحيح للتاريخ الميلادي.
+أخرج كل مشوار موجود كعنصر مستقل في مصفوفة rides.`;
+
+    const r = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${encodeURIComponent(key)}`, {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        contents: [{ parts: [{ text: prompt }, { inline_data: { mime_type: 'image/jpeg', data: b64 } }] }],
+        generationConfig: {
+          temperature: 0,
+          responseMimeType: 'application/json',
+          responseSchema: {
+            type: 'OBJECT',
+            properties: {
+              date: { type: 'STRING' },
+              rides: {
+                type: 'ARRAY',
+                items: {
+                  type: 'OBJECT',
+                  properties: {
+                    time: { type: 'STRING' },
+                    profit: { type: 'NUMBER' },
+                    dist: { type: 'NUMBER' },
+                    dur: { type: 'NUMBER' }
+                  },
+                  required: ['time', 'profit', 'dist', 'dur']
+                }
+              }
+            },
+            required: ['date', 'rides']
+          }
+        }
+      })
+    });
+    if (!r.ok) return { rides: [], date: '' };
+    const d = await r.json();
+    const parsed = JSON.parse((d.candidates?.[0]?.content?.parts?.[0]?.text || '').replace(/```json|```/g, '').trim());
+    if (Array.isArray(parsed)) return { rides: parsed, date: '' };
+    return { rides: Array.isArray(parsed.rides) ? parsed.rides : [], date: parsed.date || '' };
+  } catch (e) { return { rides: [], date: '' }; }
+}
+
+/* ==============================-
+   معاينة وحفظ المشاوير المستخرجة
+   ==============================- */
+function renderPreview() {
+  const box = document.getElementById('prevBox'), list = document.getElementById('exList');
+  list.innerHTML = '';
+  if (!pending.length) { box.style.display = 'none'; return; }
+  box.style.display = 'block';
+  pending.forEach((t, i) => {
+    const d = document.createElement('div');
+    d.className = 'exitem';
+    d.innerHTML = `
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+        <span style="font-size:.82rem;font-weight:700;color:var(--ac)">مشوار مستخرج #${i + 1}</span>
+        <button class="ibtn del" onclick="pending.splice(${i},1);renderPreview()">🗑️</button>
+      </div>
+      <div class="g2">
+        <div><label style="margin-top:0">الوقت (يمين البطاقة)</label><input type="text" value="${t.time || ''}" placeholder="مثل 7:53 م" oninput="pending[${i}].time=toEnNum(this.value)"></div>
+        <div><label style="margin-top:0">ربح جيني (ريال)</label><input type="number" step="0.01" value="${t.profit || ''}" placeholder="6.57" oninput="pending[${i}].profit=parseFloat(toEnNum(this.value))||0"></div>
+      </div>
+      <div class="g2">
+        <div><label>المسافة (كم) يسار البطاقة</label><input type="number" step="0.1" value="${t.dist || ''}" placeholder="مثل 3.9" oninput="pending[${i}].dist=parseFloat(toEnNum(this.value))||0"></div>
+        <div><label>المدة (دقائق) تحت الكيلومترات</label><input type="number" value="${t.dur || ''}" placeholder="مثل 10" oninput="pending[${i}].dur=parseInt(toEnNum(this.value))||0"></div>
+      </div>`;
+    list.appendChild(d);
+  });
+}
+
+function saveExtracted() {
+  if (!pending.length) return;
+  const dt = document.getElementById('scanDate').value.trim() || 'اليوم';
+  const db = getDB();
+  let day = db.find(x => x.date === dt);
+  if (!day) { day = { date: dt, rides: [] }; db.push(day); }
+  pending.forEach(t => day.rides.push({ time: t.time, profit: +t.profit || 0, dist: +t.dist || 0, dur: +t.dur || 0 }));
+  pending = [];
+  document.getElementById('prevBox').style.display = 'none';
+  saveDB(db);
+  alert(`✅ تم حفظ المشاوير في يوم (${dt}) بنجاح!`);
+}
+
+function clearExtracted() { pending = []; renderPreview(); }
+
+/* ==============================-
+   فحص العرض قبل القبول
+   ==============================- */
+function evalOffer() {
+  const p = parseFloat(toEnNum(document.getElementById('cPick').value)) || 0;
+  const t = parseFloat(toEnNum(document.getElementById('cTrip').value)) || 3;
+  const m = parseFloat(toEnNum(document.getElementById('cTime').value)) || 10;
+  const r = parseFloat(toEnNum(document.getElementById('cPrice').value)) || 0;
+  const totD = p + t, fuel = totD * GAS_KM, net = r - fuel, hr = (net / m) * 60, rpk = net / (totD || 1);
+  const res = document.getElementById('cRes');
+  res.className = 'verdict ' + ((p > 3.5 && r < 14) ? 'bad' : (rpk >= 1.2 && hr >= 35) ? 'good' : (rpk >= 0.85 ? 'warn' : 'bad'));
+  res.innerHTML = `${(p > 3.5 && r < 14) ? '❌ <strong>ارفض فوراً!</strong> مسافة الوصول للعميل بعيدة.' : (rpk >= 1.2 && hr >= 35) ? '✅ <strong>مشوار ممتاز! اقبل فوراً.</strong>' : '⚠️ <strong>مشوار متوسط/ضعيف.</strong>'}<br>• المسافة الكلية: ${totD.toFixed(1)} كم (البنزين: ${fuel.toFixed(2)} ر.س)<br>• الصافي الفعلي: <strong>${net.toFixed(2)} ر.س</strong> (${hr.toFixed(0)} ر.س/ساعة)`;
+}
+
+/* ==============================-
+   النسخ الاحتياطي والاستعادة
+   ==============================- */
+function expData() {
+  const payload = { rides: getDB(), odo: getOdoLogs(), fuel: getFuelLogs() };
+  const a = document.createElement('a');
+  a.href = 'data:text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(payload, null, 2));
+  a.download = 'jeeny_full_backup.json';
+  a.click();
+}
+
+function impData(f) {
+  if (!f) return;
+  const r = new FileReader();
+  r.onload = e => {
+    try {
+      const p = JSON.parse(e.target.result);
+      if (Array.isArray(p)) saveDB(p);
+      else {
+        if (p.rides) localStorage.setItem(DB_KEY, JSON.stringify(p.rides));
+        if (p.odo) localStorage.setItem(ODO_KEY, JSON.stringify(p.odo));
+        if (p.fuel) localStorage.setItem(FUEL_KEY, JSON.stringify(p.fuel));
+        renderAll();
+      }
+      alert('✅ تمت استعادة جميع البيانات بنجاح');
+    } catch (x) { alert('ملف غير صالح'); }
+  };
+  r.readAsText(f);
+}
+
+function resetHistory() {
+  if (!confirm('هل تريد استعادة السجل الأصلي المعتمد؟')) return;
+  localStorage.setItem(DB_KEY, JSON.stringify(buildDefault()));
+  renderAll();
+  alert('✅ تمت استعادة السجل الكامل!');
+}
+
+function goTab(id, el) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.nitem').forEach(n => n.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  el.classList.add('active');
+}
+
+/* ==============================-
+   التشغيل الأولي
+   ==============================- */
+renderAll();
+
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('sw.js').catch(function () {});
+  });
+}
+</script>
+</body>
+</html>
