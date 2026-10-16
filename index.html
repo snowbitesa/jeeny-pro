@@ -67,6 +67,20 @@ button.sec{background:#1e293b;color:#e2e8f0;border:1px solid #334155}
 .nitem{color:var(--mut);font-size:.7rem;text-align:center;cursor:pointer;flex:1;display:flex;flex-direction:column;align-items:center;gap:2px}
 .nitem.active{color:var(--ac);font-weight:700}
 .tab{display:none}.tab.active{display:block}
+.date-picker{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.88);z-index:1000;display:none;flex-direction:column;padding:12px;overflow:auto}
+.dp-header{display:flex;justify-content:space-between;align-items:center;padding:12px;font-weight:800;font-size:1.05rem;background:linear-gradient(135deg,#3b0764,#7e22ce);border-radius:12px;color:#fff}
+.dp-nav{display:flex;gap:6px;margin-top:8px}
+.dp-nav button{flex:1;padding:10px;border:none;border-radius:9px;background:#1e293b;color:#e2e8f0;font-size:.9rem;font-weight:700;cursor:pointer}
+.dp-nav button:active{background:var(--pl)}
+.dp-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:5px;padding:10px 0}
+.dp-dow{padding:8px 2px;text-align:center;font-size:.72rem;font-weight:800;color:var(--mut)}
+.dp-day{padding:11px 2px;border-radius:9px;text-align:center;cursor:pointer;font-size:.9rem;background:#0f1624;border:1px solid #263147}
+.dp-day:active{background:var(--pl)}
+.dp-day.empty{background:transparent;border:none;cursor:default}
+.dp-day.today{border-color:var(--ac);color:var(--ac);font-weight:800}
+.dp-day.future{opacity:.35}
+.dp-close{padding:12px;background:var(--pl);border:none;border-radius:10px;color:#fff;font-size:.92rem;font-weight:800;margin-top:6px;cursor:pointer}
+.dp-title{text-align:center;font-size:.78rem;color:var(--mut);margin-top:4px}
 .ocr-hint{font-size:.72rem;color:var(--mut);margin-top:6px;line-height:1.5}
 </style>
 </head>
@@ -120,8 +134,11 @@ button.sec{background:#1e293b;color:#e2e8f0;border:1px solid #334155}
     <!-- الماسح البصري والإدخال -->
     <div class="card">
       <h2>📸 إضافة مشاوير جديدة (بالصور أو يدوياً)</h2>
-      <label>اسم اليوم والتاريخ</label>
-      <input type="text" id="scanDate" placeholder="مثلاً: الخميس 15 أكتوبر 2026" onblur="var n=normalizeDate(this.value); if(n){this.value=n; this.dataset.auto='';}">
+      <label>اسم اليوم والتاريخ <span style="font-size:.7rem;color:var(--mut)">(اضغط لاختيار من القائمة)</span></label>
+      <div style="display:flex;gap:5px">
+        <input type="text" id="scanDate" placeholder="مثلاً: الخميس 16 أكتوبر 2026" onclick="openDatePicker('scanDate')" readonly>
+        <button class="btn sec" style="width:auto;padding:10px" onclick="openDatePicker('scanDate')">📅</button>
+      </div>
 
       <div class="upzone" onclick="document.getElementById('imgIn').click()">
         <div style="font-size:1.7rem">📲</div>
@@ -167,8 +184,11 @@ button.sec{background:#1e293b;color:#e2e8f0;border:1px solid #334155}
     <div class="card">
       <h2>📟 حاسبة عداد السيارة (بداية ونهاية اليوم)</h2>
       <p style="font-size:.76rem;color:var(--mut);line-height:1.5">سجل عدد كيلومترات السيارة أول ما تخرج (يبقى محفوظاً)، ولما تخلص آخر اليوم اكتب العداد النهائي ليحسب لك المسافة الفارغة والبنزين الفعلي بدقة:</p>
-      <label>اليوم</label>
-      <input type="text" id="odoDate" placeholder="الأربعاء 14 أكتوبر 2026" onblur="var n=normalizeDate(this.value); if(n){this.value=n; this.dataset.auto='';}">
+      <label>اليوم <span style="font-size:.7rem;color:var(--mut)">(اضغط لاختيار من القائمة)</span></label>
+      <div style="display:flex;gap:5px">
+        <input type="text" id="odoDate" placeholder="الأربعاء 14 أكتوبر 2026" onclick="openDatePicker('odoDate')" readonly>
+        <button class="btn sec" style="width:auto;padding:10px" onclick="openDatePicker('odoDate')">📅</button>
+      </div>
       <div class="g2">
         <div>
           <label>عداد بداية اليوم (كم)</label>
@@ -189,7 +209,7 @@ button.sec{background:#1e293b;color:#e2e8f0;border:1px solid #334155}
       <h2>⛽ سجل تعبئة البنزين الفعلي (المحطة)</h2>
       <p style="font-size:.76rem;color:var(--mut)">كلما عبأت بنزين لسيارتك، سجل المبلغ المدفوع هنا لتعرف إجمالي ما دفعته فعلياً:</p>
       <div class="g2">
-        <div><label>التاريخ / اليوم</label><input type="text" id="fuelDate" placeholder="14 أكتوبر"></div>
+        <div><label>التاريخ / اليوم</label><input type="text" id="fuelDate" placeholder="14 أكتوبر" onclick="openDatePicker('fuelDate')" readonly></div>
         <div><label>المبلغ المدفوع (ريال)</label><input type="number" id="fuelAmt" step="0.5" placeholder="مثلاً: 50"></div>
       </div>
       <button class="btn" onclick="addFuelRefill()">➕ تسجيل تعبئة بنزين</button>
@@ -275,6 +295,21 @@ button.sec{background:#1e293b;color:#e2e8f0;border:1px solid #334155}
   <div class="nitem" onclick="goTab('set',this)"><span>⚙️</span><span>الإعدادات</span></div>
 </nav>
 
+<!-- نافذة اختيار التاريخ -->
+<div class="date-picker" id="datePicker">
+  <div class="dp-header">
+    <span id="dpMonthYear">اختر التاريخ</span>
+    <button class="dp-close" style="margin:0;padding:6px 12px" onclick="closeDatePicker()">إغلاق ×</button>
+  </div>
+  <div class="dp-nav">
+    <button onclick="shiftMonth(-1)">◀ الشهر السابق</button>
+    <button onclick="shiftMonth(1)">الشهر التالي ▶</button>
+  </div>
+  <div class="dp-title">اختر اليوم من الشهر (الأيام المستقبلية غير مفعّلة)</div>
+  <div class="dp-grid" id="dpGrid"></div>
+  <button class="dp-close" onclick="closeDatePicker()">تم / إغلاق</button>
+</div>
+
 <script>
 /* ===============================
    الإعدادات والثوابت (عام לכל مستخدم)
@@ -287,6 +322,8 @@ const FUEL_KEY = 'jeeny_fuel_logs_v1';
 const DAILY_TARGET = 100; // الهدف اليومي بالريال
 const MONTHLY_TARGET = 1300; // الهدف الشهري للادخار بالريال (عدّله من الإعدادات لو wanted)
 let pending = [];
+let dpYear, dpMonth; // للتنقل في قائمة التاريخ
+let currentDateInput = 'scanDate';
 
 /* ===============================
    السجل الشخصي المحفوظ (هיסטوريك)
@@ -505,6 +542,88 @@ function syncTodayDates() {
 }
 syncTodayDates();
 setInterval(syncTodayDates, 30000);
+
+/* ===============================
+   قائمة اختيار التاريخ (Date Picker)
+   =============================== */
+function openDatePicker(inputId) {
+  if (inputId) currentDateInput = inputId;
+  const now = new Date(new Date().toLocaleString("en-US", { timeZone: "Asia/Riyadh" }));
+  // إذا الحقل يحتوي تاريخاً محدداً، نفتح على شهر ذلك التاريخ
+  const cur = document.getElementById(currentDateInput).value || '';
+  const parsed = parseArabicDate(cur);
+  if (parsed) { dpYear = parsed.getFullYear(); dpMonth = parsed.getMonth(); }
+  else { dpYear = now.getFullYear(); dpMonth = now.getMonth(); }
+  document.getElementById('datePicker').style.display = 'flex';
+  renderDatePicker();
+}
+
+function closeDatePicker() {
+  document.getElementById('datePicker').style.display = 'none';
+}
+
+function shiftMonth(delta) {
+  dpMonth += delta;
+  if (dpMonth < 0) { dpMonth = 11; dpYear--; }
+  else if (dpMonth > 11) { dpMonth = 0; dpYear++; }
+  renderDatePicker();
+}
+
+// يحوّل نص التاريخ العربي مثل "الخميس 16 أكتوبر 2026" إلى كائن Date
+function parseArabicDate(str) {
+  const t = toEnNum(String(str || '')).replace(/[،,]/g, ' ');
+  const m = t.match(/(\d{1,2})\s*(يناير|فبراير|مارس|أبريل|ابريل|مايو|يونيو|يوليو|أغسطس|اغسطس|سبتمبر|أكتوبر|اكتوبر|نوفمبر|ديسمبر)\s*(\d{4})/);
+  if (!m) return null;
+  const day = parseInt(m[1], 10);
+  const mon = monthIndexAr(m[2]);
+  const year = parseInt(m[3], 10);
+  if (mon < 0 || day < 1 || day > 31) return null;
+  return new Date(year, mon, day);
+}
+
+function renderDatePicker() {
+  const now = new Date(new Date().toLocaleString("en-US", { timeZone: "Asia/Riyadh" }));
+  const today0 = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  const firstDay = new Date(dpYear, dpMonth, 1).getDay(); // 0 = الأحد
+  const daysInMonth = new Date(dpYear, dpMonth + 1, 0).getDate();
+
+  document.getElementById('dpMonthYear').textContent = `${MONTHS_AR[dpMonth]} ${dpYear}`;
+  const grid = document.getElementById('dpGrid');
+  grid.innerHTML = '';
+
+  // رؤوس أيام الأسبوع
+  DAYS_AR.forEach(d => {
+    const div = document.createElement('div');
+    div.className = 'dp-dow';
+    div.textContent = d.replace('ال', '').slice(0, 3);
+    grid.appendChild(div);
+  });
+
+  // خانات فارغة قبل أول يوم
+  for (let i = 0; i < firstDay; i++) {
+    const div = document.createElement('div');
+    div.className = 'dp-day empty';
+    grid.appendChild(div);
+  }
+
+  for (let d = 1; d <= daysInMonth; d++) {
+    const dateObj = new Date(dpYear, dpMonth, d);
+    const div = document.createElement('div');
+    div.className = 'dp-day';
+    div.textContent = d;
+    if (dateObj.getTime() === today0.getTime()) div.classList.add('today');
+    // الأيام المستقبلية تظهر باهتة لكن يمكن اختيارها (قد يحتاج المستخدم تاريخاً قادماً)
+    if (dateObj.getTime() > today0.getTime()) div.classList.add('future');
+    div.onclick = () => {
+      const fullDate = `${DAYS_AR[dateObj.getDay()]} ${d} ${MONTHS_AR[dpMonth]} ${dpYear}`;
+      const el = document.getElementById(currentDateInput);
+      el.value = fullDate;
+      el.dataset.auto = '';
+      closeDatePicker();
+    };
+    grid.appendChild(div);
+  }
+}
 
 /* ===============================
    تحميل القيم المحفوظة
