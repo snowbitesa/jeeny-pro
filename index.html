@@ -815,7 +815,7 @@ async function askCustomAdvisor() {
 
   const key = (localStorage.getItem('jeeny_ai_key') || '').trim();
   const db = getDB();
-  if (key.startsWith('AIza')) {
+  if (key.startsWith('AIza') || key.startsWith('AQ.')) {
     try {
       const prompt = `أنت مستشار مالي لتطبيق مشاوير، هدف المستخدم اليومي 100 ريال والهدف الشهري ${MONTHLY_TARGET} ريال. لديه ${db.reduce((a,b)=>a+b.rides.length,0)} مشواراً. أجب باختصار وصراحة على سؤاله: ${q}`;
       const r = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${encodeURIComponent(key)}`, {
