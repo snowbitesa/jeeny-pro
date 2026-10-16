@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-<title>جيني برو | النظام المالي المتكامل - كورولا 2015</title>
+<title>جيني برو | النظام المالي للمشاوير</title>
 <meta name="theme-color" content="#581c87">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
@@ -73,8 +73,8 @@ button.sec{background:#1e293b;color:#e2e8f0;border:1px solid #334155}
 <body>
 
 <header>
-  <h1>🚘 جيني برو | النظام المالي والمستشار الذكي</h1>
-  <p>تويوتا كورولا 2015 • الدمام وسيهات • الهدف اليومي: 100 ريال</p>
+  <h1>🚗 جيني برو | النظام المالي للمشاوير</h1>
+  <p>تطبيق شخصي لتسجيل مشاويرك وحساب الربح الصافي بعد البنزين • الهدف اليومي: 100 ريال</p>
 </header>
 
 <div class="container">
@@ -96,7 +96,7 @@ button.sec{background:#1e293b;color:#e2e8f0;border:1px solid #334155}
     <div class="card">
         <h2 id="kpiTitle">📊 لوحة المؤشرات الذكية</h2>
       <div class="g2">
-        <div class="sbox"><div class="l">إجمالي صافي جيني</div><div class="v" id="tGross">0.00 ر.س</div></div>
+        <div class="sbox"><div class="l">إجمالي صافي المشاوير</div><div class="v" id="tGross">0.00 ر.س</div></div>
         <div class="sbox"><div class="l">الربح الفعلي (بعد البنزين)</div><div class="v" id="tNet">0.00 ر.س</div></div>
       </div>
       <div class="g3" style="margin-top:8px">
@@ -110,7 +110,7 @@ button.sec{background:#1e293b;color:#e2e8f0;border:1px solid #334155}
           <strong id="bestDayTxt" style="color:#fcd34d">-</strong>
         </div>
         <div style="display:flex;justify-content:space-between;font-size:.78rem;margin-top:6px">
-          <span style="color:var(--mut)">🏠 تغطية إيجار البيت (1,300 ريال):</span>
+          <span style="color:var(--mut)">💰 تغطية الهدف الشهري:</span>
           <strong id="rentTxt" style="color:var(--ok)">-</strong>
         </div>
         <div class="pbar" style="height:8px;margin-top:5px"><div class="pfill" id="rentBar" style="width:0%"></div></div>
@@ -125,7 +125,7 @@ button.sec{background:#1e293b;color:#e2e8f0;border:1px solid #334155}
 
       <div class="upzone" onclick="document.getElementById('imgIn').click()">
         <div style="font-size:1.7rem">📲</div>
-        <p>اضغط لرفع صور سجل الرحلات من جيني</p>
+        <p>اضغط لرفع صور سجل المشاوير من التطبيق</p>
         <span>يدعم مشوار واحد أو عدة مشاوير في نفس الصورة، ويُقرأ الوقت والربح والمسافة والمدة والتاريخ تلقائياً</span>
         <input type="file" id="imgIn" accept="image/*" multiple style="display:none" onchange="scanScreenshots(this.files)">
       </div>
@@ -145,7 +145,7 @@ button.sec{background:#1e293b;color:#e2e8f0;border:1px solid #334155}
       <div id="manBox" style="display:none;margin-top:10px;padding-top:10px;border-top:1px solid var(--brd)">
         <div class="g2">
           <div><label>الوقت</label><input type="text" id="mTime" placeholder="07:53 م"></div>
-          <div><label>ربح جيني (ريال)</label><input type="number" id="mProf" step="0.01" placeholder="6.57"></div>
+          <div><label>ربح التطبيق (ريال)</label><input type="number" id="mProf" step="0.01" placeholder="6.57"></div>
         </div>
         <div class="g2">
           <div><label>المسافة (كم)</label><input type="number" id="mDist" step="0.1" placeholder="3.9"></div>
@@ -165,8 +165,8 @@ button.sec{background:#1e293b;color:#e2e8f0;border:1px solid #334155}
   <!-- التبويب 2: عداد السيارة وتعبئة البنزين -->
   <div id="tab-odo" class="tab">
     <div class="card">
-      <h2>📟 حاسبة عداد الكورولا (بداية ونهاية اليوم)</h2>
-      <p style="font-size:.76rem;color:var(--mut);line-height:1.5">سجل كم ماشية السيارة أول ما تطلع (يبقى محفوظاً)، ولما تخلص آخر اليوم اكتب العداد النهائي ليحسب لك المسافة الفارغة والبنزين الفعلي بدقة:</p>
+      <h2>📟 حاسبة عداد السيارة (بداية ونهاية اليوم)</h2>
+      <p style="font-size:.76rem;color:var(--mut);line-height:1.5">سجل عدد كيلومترات السيارة أول ما تخرج (يبقى محفوظاً)، ولما تخلص آخر اليوم اكتب العداد النهائي ليحسب لك المسافة الفارغة والبنزين الفعلي بدقة:</p>
       <label>اليوم</label>
       <input type="text" id="odoDate" placeholder="الأربعاء 14 أكتوبر 2026" onblur="var n=normalizeDate(this.value); if(n){this.value=n; this.dataset.auto='';}">
       <div class="g2">
@@ -187,7 +187,7 @@ button.sec{background:#1e293b;color:#e2e8f0;border:1px solid #334155}
 
     <div class="card">
       <h2>⛽ سجل تعبئة البنزين الفعلي (المحطة)</h2>
-      <p style="font-size:.76rem;color:var(--mut)">كلما عبأت بنزين للكورولا، سجل المبلغ المدفوع هنا لتعرف إجمالي ما دفعته فعلياً:</p>
+      <p style="font-size:.76rem;color:var(--mut)">كلما عبأت بنزين لسيارتك، سجل المبلغ المدفوع هنا لتعرف إجمالي ما دفعته فعلياً:</p>
       <div class="g2">
         <div><label>التاريخ / اليوم</label><input type="text" id="fuelDate" placeholder="14 أكتوبر"></div>
         <div><label>المبلغ المدفوع (ريال)</label><input type="number" id="fuelAmt" step="0.5" placeholder="مثلاً: 50"></div>
@@ -202,7 +202,7 @@ button.sec{background:#1e293b;color:#e2e8f0;border:1px solid #334155}
     </div>
   </div>
 
-  <!-- التبويب 3: المستشار الذكي الليلي + جيني باس -->
+  <!-- التبويب 3: المستشار الذكي الليلي -->
   <div id="tab-adv" class="tab">
     <div class="card" style="border-color:#7e22ce">
       <h2>🌙 المستشار الذكي الليلي (تحليل شامل لمشاويرك)</h2>
@@ -211,7 +211,7 @@ button.sec{background:#1e293b;color:#e2e8f0;border:1px solid #334155}
     </div>
 
     <div class="card">
-      <h2>🎟️ مستشار اشتراك "جيني باس" التلقائي</h2>
+      <h2>🎟️ مستشار الاشتراك التلقائي</h2>
       <div id="passAdvisorBox" class="verdict warn" style="display:block;margin-top:6px"></div>
     </div>
 
@@ -220,7 +220,7 @@ button.sec{background:#1e293b;color:#e2e8f0;border:1px solid #334155}
       <div class="chip-row">
         <span class="chip" onclick="askAdvisor('best_times')">⏰ ما هي أفضل الأوقات أطلع فيها؟</span>
         <span class="chip" onclick="askAdvisor('today_eval')">📊 حلل أرباح آخر يوم عمل</span>
-        <span class="chip" onclick="askAdvisor('jeeny_pass')">🎟️ هل أشترك في جيني باس؟</span>
+        <span class="chip" onclick="askAdvisor('jeeny_pass')">🎟️ هل أشترك في الباقة؟</span>
         <span class="chip" onclick="askAdvisor('plan_100')">🎯 كيف أقفل 100 ريال بأقل تعب؟</span>
       </div>
       <label style="margin-top:12px">أو اكتب سؤالك الخاص هنا:</label>
@@ -277,17 +277,19 @@ button.sec{background:#1e293b;color:#e2e8f0;border:1px solid #334155}
 
 <script>
 /* ===============================
-   الإعدادات والثوابت
+   الإعدادات والثوابت (عام לכל مستخدم)
    =============================== */
-const GAS_KM = 2.33 / 12; // 0.1941667 ريال/كم للكورولا 2015
-const DB_KEY = 'jeeny_corolla_pro_v8_clean97';
+// تكلفة البنزين لكل كيلومتر (عدّلها حسب استهلاك مركبتك وسعر البنزين عندك)
+const GAS_KM = 2.33 / 12; // مثال: 2.33 ريال للتر، السيارة تقطع 12 كم/لتر
+const DB_KEY = 'jeeny_pro_data_v1';
 const ODO_KEY = 'jeeny_odo_logs_v1';
 const FUEL_KEY = 'jeeny_fuel_logs_v1';
-const DAILY_TARGET = 100;
+const DAILY_TARGET = 100; // الهدف اليومي بالريال
+const MONTHLY_TARGET = 1300; // الهدف الشهري للادخار بالريال (عدّله من الإعدادات لو wanted)
 let pending = [];
 
 /* ===============================
-   السجل الافتراضي (97 مشواراً)
+   السجل الشخصي المحفوظ (هיסטوريك)
    =============================== */
 const RAW_INIT = [
   ["الأحد 27 سبتمبر 2026", [["06:34 م",6.35,2.7,5],["06:57 م",6.35,3.8,5],["07:22 م",11.49,3.9,7],["08:43 م",6.35,2.9,5],["08:58 م",6.72,4.8,9]]],
@@ -338,29 +340,25 @@ function toEnNum(str) {
     s = s.split(ar[i]).join(String(i));
     s = s.split(fa[i]).join(String(i));
   }
-  // الفاصلة العربية واللفظة تُعامل كفاصلة عشرية
   s = s.replace(/[٫٬]/g, '.');
-  // إزالة أي مسافة داخلية بين أرقام
   s = s.replace(/\s+/g, '');
   return s;
 }
 
 /* ===============================
    استخراج الوقت من نص (دقيق جداً)
-   يدعم: 7:53 م، ٧:٥٣ م، 7.53 م، 07:53 م، 7.53م
+   يدعم: 7:53 م، ٧:٥٣ م، 7.53 م، 07:53 م
    =============================== */
 function extractTime(t) {
   if (!t) return null;
   const s = toEnNum(String(t)).replace(/[·•：]/g, ':').replace(/٫/g, '.');
 
-  // البحث عن Pattern ساعة:دقيقة مع م/ص أو ص/م
   const mm = s.match(/(\d{1,2})\s*[:.]\s*(\d{1,2})/);
   let h = null, mi = null;
   if (mm) {
     h = parseInt(mm[1], 10);
     mi = mm[2];
   } else {
-    // صيغة بدون فاصل: 753 → 7:53
     const d = s.replace(/\D/g, '');
     if (d.length === 3) { h = parseInt(d[0], 10); mi = d.slice(1); }
     else if (d.length === 4) { h = parseInt(d.slice(0, 2), 10); mi = d.slice(2); }
@@ -370,13 +368,12 @@ function extractTime(t) {
   mi = parseInt(mi, 10);
   if (mi > 59) return null;
 
-  // تحديد ص/م
   const hasPM = /م/i.test(s) || /pm/i.test(s);
   const hasAM = /ص/i.test(s) || /am/i.test(s);
   let ap = 'م';
   if (hasPM && !hasAM) ap = 'م';
   else if (hasAM && !hasPM) ap = 'ص';
-  else if (!hasPM && !hasAM) ap = 'م'; // افتراضي مساءً لصور جيني
+  else ap = 'م';
 
   if (h === 0) { h = 12; ap = 'ص'; }
   else if (h > 12 && h < 24) { h -= 12; ap = 'م'; }
@@ -393,21 +390,18 @@ function extractProfit(t) {
   if (!t) return null;
   const s = toEnNum(String(t)).replace(/[،٫]/g, '.').replace(/,/g, '.').replace(/[^\d.:]/g, ' ');
 
-  // 우선 ابحث عن صيغة X.XX (رقم.Point.رقمين) - الأجرة típicamente
   let m = s.match(/(\d{1,3}\.\d{2})/);
   if (m) {
     const v = parseFloat(m[1]);
     if (v >= 1 && v < 500) return v.toFixed(2);
   }
 
-  // صيغة 3-4 أرقام قد تكون الأجرة بالملي (657 → 6.57)
   m = s.match(/(\d{3,4})/);
   if (m) {
     const v = parseInt(m[1], 10) / 100;
     if (v >= 1 && v < 500) return v.toFixed(2);
   }
 
-  // صيغة رقم واحد أو رقمين
   m = s.match(/(\d{1,2})/);
   if (m) {
     const v = parseInt(m[1], 10);
@@ -477,12 +471,10 @@ function monthIndexAr(name) {
   return MONTHS_KEYS.indexOf(n);
 }
 
-/* يُnormilize التاريخ ويحسب اسم اليوم تلقائياً من التاريخ الميلادي */
 function normalizeDate(raw) {
   if (!raw) return '';
   const t = toEnNum(String(raw)).replace(/[،,]/g, ' ');
 
-  // Pattern: 15 أكتوبر 2026
   const m = t.match(/(\d{1,2})\s*(يناير|فبراير|مارس|أبريل|ابريل|مايو|يونيو|يوليو|أغسطس|اغسطس|سبتمبر|أكتوبر|اكتوبر|نوفمبر|ديسمبر)\s*(\d{4})/);
   if (!m) return '';
   const day = parseInt(m[1], 10);
@@ -544,7 +536,7 @@ function renderAll() {
       const rf = (r.dist || 0) * GAS_KM, rn = (r.profit || 0) - rf;
       rHtml += `<div class="rrow">
         <div class="rinfo">
-          <div class="rtop"><span>🕒 ${r.time}</span><span style="color:var(--ac)">جيني: ${(+r.profit).toFixed(2)} ر.س</span></div>
+          <div class="rtop"><span>🕒 ${r.time}</span><span style="color:var(--ac)">التطبيق: ${(+r.profit).toFixed(2)} ر.س</span></div>
           <div class="rsub">المسافة: ${(+r.dist).toFixed(1)} كم (${r.dur} د) • البنزين: ${rf.toFixed(2)} • <strong style="color:var(--ok)">الصافي: ${rn.toFixed(2)} ر.س</strong></div>
         </div>
         <div class="ract">
@@ -567,7 +559,7 @@ function renderAll() {
       </div>
       <div class="drides">
         <div style="font-size:.74rem;color:var(--mut);margin-bottom:7px;display:flex;justify-content:space-between">
-          <span>إجمالي جيني: ${dG.toFixed(2)} ر.س</span><span>المسافة: ${dD.toFixed(1)} كم (${dT} د)</span><span>البنزين: ${dF.toFixed(2)} ر.س</span>
+          <span>إجمالي التطبيق: ${dG.toFixed(2)} ر.س</span><span>المسافة: ${dD.toFixed(1)} كم (${dT} د)</span><span>البنزين: ${dF.toFixed(2)} ر.س</span>
         </div>${rHtml}
       </div>`;
     box.appendChild(dc);
@@ -584,9 +576,9 @@ function renderAll() {
   document.getElementById('tFuel').innerText = tF.toFixed(2) + ' ر.س';
   document.getElementById('bestDayTxt').innerText = `${bestDay.date} (${bestDay.gross.toFixed(2)} ر.س)`;
 
-  const rentPct = Math.min(100, (tN / 1300) * 100);
+  const rentPct = Math.min(100, (tN / MONTHLY_TARGET) * 100);
   document.getElementById('rentBar').style.width = rentPct + '%';
-  document.getElementById('rentTxt').innerText = `${tN.toFixed(2)} / 1,300 ر.س (متبقي: ${Math.max(0, 1300 - tN).toFixed(2)} ر.س)`;
+  document.getElementById('rentTxt').innerText = `${tN.toFixed(2)} / ${MONTHLY_TARGET.toLocaleString()} ر.س (متبقي: ${Math.max(0, MONTHLY_TARGET - tN).toFixed(2)} ر.س)`;
 
   const lastDay = lastWorkDay(db);
   const lastGross = lastDay.rides.reduce((a, b) => a + (+b.profit || 0), 0);
@@ -632,7 +624,7 @@ function calcOdoLive() {
 
   box.style.display = 'block';
   box.innerHTML = `
-    • <strong>المسافة الكلية بطبلون الكورولا:</strong> ${actualKm.toFixed(1)} كم<br>
+    • <strong>المسافة الكلية поعداد السيارة:</strong> ${actualKm.toFixed(1)} كم<br>
     • <strong>مسافة المشاوير بالتطبيق:</strong> ${appKm.toFixed(1)} كم | <strong>المسافة الفارغة (الضائعة):</strong> ${emptyKm.toFixed(1)} كم<br>
     • <strong>تكلفة البنزين الفعلية لليوم:</strong> <span style="color:var(--err)">${actualGas.toFixed(2)} ريال</span><br>
     • <strong>ربحك الصافي الحقيقي لليوم:</strong> <strong style="color:var(--ok)">${realNet.toFixed(2)} ريال</strong>
@@ -709,7 +701,7 @@ function renderOdoAndFuel(estTripFuel) {
     return `<div class="rrow">
       <div class="rinfo">
         <div class="rtop"><span>⛽ ${f.date}</span><span style="color:var(--err)">دفعت: ${f.amt.toFixed(2)} ر.س</span></div>
-        <div class="rsub">حوالي ${liters} لتر بنزين (تكفي لقطع ~${(liters * 12).toFixed(0)} كم بالكورولا)</div>
+        <div class="rsub">حوالي ${liters} لتر بنزين (تكفي لقطع ~${(liters * 12).toFixed(0)} كم)</div>
       </div>
       <button class="ibtn del" onclick="delFuel(${idx})">🗑️</button>
     </div>`;
@@ -766,7 +758,7 @@ function renderSmartAdvisor(db, tG, tN, tC, tDur) {
 
   document.getElementById('nightReportBox').innerHTML = `
     ${nightGreeting}<br>
-    • <strong>حصيلة (${lastDay.date}):</strong> أنجزت <strong>${lastDay.rides.length} مشاوير</strong> في <strong>${lDur} دقيقة</strong> قيادة فعلية، بصافي جيني <strong>${lGross.toFixed(2)} ر.س</strong> وصافي فعلي بـجيبك <strong>${lNet.toFixed(2)} ر.س</strong>.<br>
+    • <strong>حصيلة (${lastDay.date}):</strong> أنجزت <strong>${lastDay.rides.length} مشاوير</strong> في <strong>${lDur} دقيقة</strong> قيادة فعلية، بصافي التطبيق <strong>${lGross.toFixed(2)} ر.س</strong> وصافي فعلي بـجيبك <strong>${lNet.toFixed(2)} ر.س</strong>.<br>
     • <strong>تقييم هدف الـ 100 ريال:</strong> ${lGross >= 100 ? 'حققت الهدف اليومي بالكامل! 👏' : `وصلت إلى ${goalPct.toFixed(0)}٪ من هدف الـ 100 ريال (كان يكفيك ${Math.ceil(Math.max(0, 100 - lGross) / 7.5)} مشاوير قصيرة إضافية لتقفيل الـ 100 ريال).`}<br>
     • <strong>أقوى فترة ذهبية في تاريخك:</strong> فترة <strong>${peak[0]}</strong> حيث أنجزت فيها <strong>${peak[1].count} مشواراً</strong> بإجمالي <strong>${peak[1].profit.toFixed(2)} ريال</strong>!
   `;
@@ -776,10 +768,10 @@ function renderSmartAdvisor(db, tG, tN, tC, tDur) {
   const passBox = document.getElementById('passAdvisorBox');
   if (avgComm > 2.18) {
     passBox.className = 'verdict good';
-    passBox.innerHTML = `✅ <strong>ينصح بالاشتراك في باقة 75 ريال (35 مشوار):</strong><br>متوسط عمولة جيني في مشاويرك هو <strong>${avgComm.toFixed(2)} ريال للمشوار</strong> (أعلى من تكلفة الباقة 2.14 ريال). الاشتراك سيوفر لك حوالي <strong>${pass35Diff.toFixed(1)} ريال</strong> لكل 35 مشوار بشرط إنهائها في 7 أيام.`;
+    passBox.innerHTML = `✅ <strong>ينصح بالاشتراك في باقة 75 ريال (35 مشوار):</strong><br>متوسط العمولة في مشاويرك هو <strong>${avgComm.toFixed(2)} ريال للمشوار</strong> (أعلى من تكلفة الباقة 2.14 ريال). الاشتراك سيوفر لك حوالي <strong>${pass35Diff.toFixed(1)} ريال</strong> لكل 35 مشوار بشرط إنهائها في 7 أيام.`;
   } else {
     passBox.className = 'verdict warn';
-    passBox.innerHTML = `⚠️ <strong>لا تشترك في "جيني باس" حالياً:</strong><br>بناءً على مشاويرك الـ ${tC}، متوسط عمولة جيني التي تُخصم منك هو <strong>${avgComm.toFixed(2)} ريال للمشوار</strong>، بينما باقة الـ 50 تكلفك <strong>2.50 ريال/مشوار</strong> وباقة الـ 75 تكلفك <strong>2.14 ريال/مشوار</strong>.<br>• فقط <strong>${ridesOver214} مشواراً من أصل ${tC}</strong> كانت عمولتها أعلى من سعر الباقة. استمر بدون اشتراك لأن مشاويرك القصيرة أوفر لك!`;
+    passBox.innerHTML = `⚠️ <strong>لا تشترك في الباقة حالياً:</strong><br>بناءً على مشاويرك الـ ${tC}، متوسط العمولة التي تُخصم منك هو <strong>${avgComm.toFixed(2)} ريال للمشوار</strong>، بينما باقة الـ 50 تكلفك <strong>2.50 ريال/مشوار</strong> وباقة الـ 75 تكلفك <strong>2.14 ريال/مشوار</strong>.<br>• فقط <strong>${ridesOver214} مشواراً من أصل ${tC}</strong> كانت عمولتها أعلى من سعر الباقة. استمر بدون اشتراك لأن مشاويرك القصيرة أوفر لك!`;
   }
 }
 
@@ -789,28 +781,28 @@ function askAdvisor(topic) {
   box.style.display = 'block';
 
   if (topic === 'best_times') {
-    box.innerHTML = `⏰ <strong>أفضل أوقات الخروج بناءً على تحليل مشاويرك في الدمام وسيهات:</strong><br>
-    1. <strong>الشفت الذهبي الأول (3:30 عصراً إلى 7:30 مساءً):</strong> هذا التوقيت حققت فيه أسرع مشاوير متتالية بدون توقف بمعدل يفوق 60 ريال/ساعة.<br>
-    2. <strong>الشفت الثاني (8:30 مساءً إلى 10:30 ليلاً):</strong> الشوارع تكون مفتوحة وتصطاد فيه مشاوير متوسطة وطويلة ترفع عدادك بسرعة.`;
+    box.innerHTML = `⏰ <strong>أفضل الأوقات بناءً على تحليل مشاويرك:</strong><br>
+    1. <strong>الشفت الذهبي الأول (3:30 عصراً إلى 7:30 مساءً):</strong> توقيت ممتاز لمشاوير متتالية بدون توقف.<br>
+    2. <strong>الشفت الثاني (8:30 مساءً إلى 10:30 ليلاً):</strong> الشوارع مفتوحة وتصطاد فيه مشاوير متوسطة وطويلة ترفع عدادك بسرعة.`;
   } else if (topic === 'today_eval') {
     const d = lastWorkDay(db);
     const g = d.rides.reduce((a, b) => a + (+b.profit || 0), 0);
     const m = d.rides.reduce((a, b) => a + (+b.dur || 0), 0);
     const best = d.rides.slice().sort((a, b) => (+b.profit || 0) - (+a.profit || 0))[0];
     box.innerHTML = `📊 <strong>تقييم يوم (${d.date}):</strong><br>
-    • حققت <strong>${g.toFixed(2)} ريال</strong> في <strong>${m} دقيقة</strong> فقط (بمعدل ممتاز قدره <strong>${((g / (m || 1)) * 60).toFixed(0)} ريال/ساعة</strong>).<br>
+    • حققت <strong>${g.toFixed(2)} ريال</strong> في <strong>${m} دقيقة</strong> فقط (بمعدل قدره <strong>${((g / (m || 1)) * 60).toFixed(0)} ريال/ساعة</strong>).<br>
     • أفضل مشوار لك هذا اليوم كان الساعة <strong>${best?.time || '-'}</strong> بقيمة <strong>${(+best?.profit || 0).toFixed(2)} ريال</strong>.<br>
-    • نصيحة الغد: لو كملت ساعة واحدة إضافية بنفس هذا الإيقاع ستكسر حاجز الـ <strong>100 ريال</strong> بكل راحة.`;
+    • نصيحة الغد: لو كملت ساعة إضافية بنفس هذا الإيقاع ستكسر حاجز الـ <strong>100 ريال</strong> بكل راحة.`;
   } else if (topic === 'jeeny_pass') {
     box.innerHTML = document.getElementById('passAdvisorBox').innerHTML;
   } else if (topic === 'plan_100') {
     const n = db.reduce((a, b) => a + b.rides.length, 0);
     const avg = n ? db.reduce((a, b) => a + b.rides.reduce((x, r) => x + (+r.profit || 0), 0), 0) / n : 8.5;
     const need = Math.max(1, Math.ceil(100 / (avg || 8.5)));
-    box.innerHTML = `🎯 <strong>أسهل خطة لتقفيل 100 ريال يومياً بالكورولا بدون تعب:</strong><br>
+    box.innerHTML = `🎯 <strong>أسهل خطة لتقفيل 100 ريال يومياً:</strong><br>
     • متوسط ربحك للمشوار الواحد في تاريخك هو <strong>${avg.toFixed(2)} ريال</strong>.<br>
     • هذا يعني أنك تحتاج فقط إلى <strong>${need} مشواراً في اليوم</strong>.<br>
-    • اطلع الساعة <strong>3:45 عصراً إلى 7:30 مساءً</strong> في خط (طريق الخليج - الزهور - المحمدية - سيهات)، وستقفل الـ 100 ريال قبل صلاة العشاء وأنت مرتاح.`;
+    • اطلع الساعة <strong>3:45 عصراً إلى 7:30 مساءً</strong>، وستقفل الـ 100 ريال قبل صلاة العشاء وأنت مرتاح.`;
   }
 }
 
@@ -825,7 +817,7 @@ async function askCustomAdvisor() {
   const db = getDB();
   if (key.startsWith('AIza')) {
     try {
-      const prompt = `أنت المستشار المالي لكابتن جيني يقود كورولا 2015 في الدمام وسيهات، هدفه اليومي 100 ريال وإيجار بيته 1300 ريال. لديه ${db.reduce((a,b)=>a+b.rides.length,0)} مشواراً. أجب باختصار وصراحة على سؤاله: ${q}`;
+      const prompt = `أنت مستشار مالي لتطبيق مشاوير، هدف المستخدم اليومي 100 ريال والهدف الشهري ${MONTHLY_TARGET} ريال. لديه ${db.reduce((a,b)=>a+b.rides.length,0)} مشواراً. أجب باختصار وصراحة على سؤاله: ${q}`;
       const r = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${encodeURIComponent(key)}`, {
         method: 'POST', headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }] })
@@ -836,7 +828,7 @@ async function askCustomAdvisor() {
     } catch (e) {}
   }
   if (q.includes('وقت') || q.includes('اوقات') || q.includes('متى')) askAdvisor('best_times');
-  else if (q.includes('باس') || q.includes('اشتراك') || q.includes('بلس')) askAdvisor('jeeny_pass');
+  else if (q.includes('باقة') || q.includes('اشتراك') || q.includes('بلس')) askAdvisor('jeeny_pass');
   else if (q.includes('100') || q.includes('هدف')) askAdvisor('plan_100');
   else askAdvisor('today_eval');
 }
@@ -856,7 +848,7 @@ function delRide(dIdx, rIdx) {
 function editRide(dIdx, rIdx) {
   const db = getDB(), r = db[dIdx].rides[rIdx];
   const t = prompt('الوقت:', r.time); if (t === null) return;
-  const p = prompt('ربح جيني (ريال):', r.profit); if (p === null) return;
+  const p = prompt('ربح التطبيق (ريال):', r.profit); if (p === null) return;
   const d = prompt('المسافة (كم):', r.dist); if (d === null) return;
   const u = prompt('المدة (دقائق):', r.dur); if (u === null) return;
   db[dIdx].rides[rIdx] = { time: t.trim() || r.time, profit: parseFloat(toEnNum(p)) || 0, dist: parseFloat(toEnNum(d)) || 0, dur: parseInt(toEnNum(u)) || 0 };
@@ -894,10 +886,8 @@ function addManual() {
 }
 
 /* ===============================
-   الماسح البصري (OCR) لصور جيني
+   الماسح البصري (OCR) لصور المشاوير
    =============================== */
-
-// تحويل ملف صورة إلى Canvas مع تحسين الدقة
 function fileToCanvas(file) {
   return new Promise(res => {
     const img = new Image();
@@ -917,19 +907,16 @@ function fileToCanvas(file) {
   });
 }
 
-// تقسيم الصورة إلى بطاقات وقراءة كل بطاقة
 async function sliceAndReadJeenyCards(canvas, stEl, curImg, totImg) {
   const w = canvas.width, h = canvas.height;
   const worker = await Tesseract.createWorker(['ara', 'eng']);
-  await worker.setParameters({ tessedit_ocr_engine_mode: 1 }); // LSTM only
+  await worker.setParameters({ tessedit_ocr_engine_mode: 1 });
 
-  // قراءة التاريخ من الشريط العلوي
   stEl.innerText = `⏳ صورة (${curImg}/${totImg}): قراءة التاريخ من الشريط العلوي...`;
   const headerTexts = await ocrRegion(worker, canvas, w * 0.15, 0, w * 0.85, Math.max(60, h * 0.18), { modes: ['normal', 'thresh'], psms: [6, 7, 11] });
   let headerDate = '';
   for (const t of headerTexts) { headerDate = normalizeDate(t); if (headerDate) break; }
 
-  // كشف أماكن البطاقات (بالبحث عن الألوان الخضراء للأجرة)
   const anchors = findGreenCardTops(canvas);
   const cardAnchors = anchors.length ? anchors : [Math.floor(h * 0.25)];
   const results = [];
@@ -940,13 +927,9 @@ async function sliceAndReadJeenyCards(canvas, stEl, curImg, totImg) {
     const cardH = Math.max(140, next - gy);
     stEl.innerText = `⏳ صورة (${curImg}/${totImg}): قراءة المشوار ${c + 1} من ${cardAnchors.length}...`;
 
-    // الأجرة (على يسار الأعلى - لون أخضر)
     const priceTexts = await ocrRegion(worker, canvas, 0, gy - h * 0.05, w * 0.45, Math.max(55, h * 0.13), { modes: ['green', 'normal'], psms: [7, 6], wl: WL_NUM });
-    // الوقت (على يمين الأعلى)
     const timeTexts = await ocrRegion(worker, canvas, w * 0.5, gy - h * 0.06, w * 0.5, Math.max(55, h * 0.14), { modes: ['normal', 'dark'], psms: [7, 6], wl: WL_TIME });
-    // المسافة (يسار الأسفل)
     const kmTexts = await ocrRegion(worker, canvas, 0, gy + cardH * 0.2, w * 0.35, cardH * 0.35, { modes: ['normal', 'thresh'], psms: [7, 6], wl: WL_NUM });
-    // المدة (تحت المسافة)
     const durTexts = await ocrRegion(worker, canvas, 0, gy + cardH * 0.55, w * 0.35, cardH * 0.38, { modes: ['normal', 'thresh'], psms: [7, 6], wl: WL_INT });
 
     results.push({
@@ -1036,9 +1019,6 @@ function cropCanvas(src, x, y, cw, ch, mode) {
   return c.toDataURL('image/png');
 }
 
-/* ==============================-
-   سير العمل عند رفع الصور
-   ==============================- */
 async function scanScreenshots(files) {
   if (!files || !files.length) return;
   const st = document.getElementById('ocrSt');
@@ -1074,7 +1054,7 @@ async function scanScreenshots(files) {
   }
   st.style.display = 'none';
   document.getElementById('imgIn').value = '';
-  if (!pending.length) alert('لم يتم العثور على مشاوير مكتملة في الصورة. جرّب صورة أوضح لسجل الرحلات.');
+  if (!pending.length) alert('لم يتم العثور على مشاوير مكتملة في الصورة. جرّب صورة أوضح لسجل المشاوير.');
   renderPreview();
 }
 
@@ -1107,11 +1087,10 @@ function parseTimeFromText(raw) {
   return `${String(h).padStart(2, '0')}:${min} ${ap}`;
 }
 
-/* Gemini Vision (اختياري) */
 async function tryGeminiVision(canvas, key) {
   try {
     const b64 = canvas.toDataURL('image/jpeg', 0.92).split(',')[1];
-    const prompt = `أنت تقرأ لقطة شاشة من تطبيق الكابتن "جيني" (Jeenny) بتنسيق عربي من اليمين لليسار.
+    const prompt = `أنت تقرأ لقطة شاشة من تطبيق مشاوير (مثل جيني) بتنسيق عربي من اليمين لليسار.
 داخل الصورة قد يوجد مشوار واحد أو عدة مشاوير مكتملة، كل مشوار داخل بطاقة مستقلة. استخرج كل مشوار في الصورة.
 
 قواعد قراءة كل بطاقة:
@@ -1160,9 +1139,6 @@ async function tryGeminiVision(canvas, key) {
   } catch (e) { return { rides: [], date: '' }; }
 }
 
-/* ==============================-
-   معاينة وحفظ المشاوير المستخرجة
-   ==============================- */
 function renderPreview() {
   const box = document.getElementById('prevBox'), list = document.getElementById('exList');
   list.innerHTML = '';
@@ -1178,7 +1154,7 @@ function renderPreview() {
       </div>
       <div class="g2">
         <div><label style="margin-top:0">الوقت (يمين البطاقة)</label><input type="text" value="${t.time || ''}" placeholder="مثل 7:53 م" oninput="pending[${i}].time=toEnNum(this.value)"></div>
-        <div><label style="margin-top:0">ربح جيني (ريال)</label><input type="number" step="0.01" value="${t.profit || ''}" placeholder="6.57" oninput="pending[${i}].profit=parseFloat(toEnNum(this.value))||0"></div>
+        <div><label style="margin-top:0">ربح التطبيق (ريال)</label><input type="number" step="0.01" value="${t.profit || ''}" placeholder="6.57" oninput="pending[${i}].profit=parseFloat(toEnNum(this.value))||0"></div>
       </div>
       <div class="g2">
         <div><label>المسافة (كم) يسار البطاقة</label><input type="number" step="0.1" value="${t.dist || ''}" placeholder="مثل 3.9" oninput="pending[${i}].dist=parseFloat(toEnNum(this.value))||0"></div>
@@ -1203,9 +1179,6 @@ function saveExtracted() {
 
 function clearExtracted() { pending = []; renderPreview(); }
 
-/* ==============================-
-   فحص العرض قبل القبول
-   ==============================- */
 function evalOffer() {
   const p = parseFloat(toEnNum(document.getElementById('cPick').value)) || 0;
   const t = parseFloat(toEnNum(document.getElementById('cTrip').value)) || 3;
@@ -1217,9 +1190,6 @@ function evalOffer() {
   res.innerHTML = `${(p > 3.5 && r < 14) ? '❌ <strong>ارفض فوراً!</strong> مسافة الوصول للعميل بعيدة.' : (rpk >= 1.2 && hr >= 35) ? '✅ <strong>مشوار ممتاز! اقبل فوراً.</strong>' : '⚠️ <strong>مشوار متوسط/ضعيف.</strong>'}<br>• المسافة الكلية: ${totD.toFixed(1)} كم (البنزين: ${fuel.toFixed(2)} ر.س)<br>• الصافي الفعلي: <strong>${net.toFixed(2)} ر.س</strong> (${hr.toFixed(0)} ر.س/ساعة)`;
 }
 
-/* ==============================-
-   النسخ الاحتياطي والاستعادة
-   ==============================- */
 function expData() {
   const payload = { rides: getDB(), odo: getOdoLogs(), fuel: getFuelLogs() };
   const a = document.createElement('a');
@@ -1261,9 +1231,6 @@ function goTab(id, el) {
   el.classList.add('active');
 }
 
-/* ==============================-
-   التشغيل الأولي
-   ==============================- */
 renderAll();
 
 if ('serviceWorker' in navigator) {
